@@ -53,7 +53,7 @@ HTML은 콘텐츠의 구조와 의미를 표시하는 언어다. `<section>` 같
 
 ## 5. 확인 방법과 결과
 
-직접 확인할 방법:
+브라우저 실습 절차와 예상 동작:
 
 1. VS Code에서 `src/index.html`을 Live Server로 연다. 자세한 실행 방법은 [루트 README](../../README.md#실행과-확인)를 따른다.
 2. Chrome 개발자 도구의 Elements(요소) 탭에서 `body`를 펼친다.
@@ -61,17 +61,13 @@ HTML은 콘텐츠의 구조와 의미를 표시하는 언어다. `<section>` 같
 4. `main`을 펼치면 다섯 `section`이, `section id="projects"` 안의 `div`를 펼치면 `article`이 나타나는지 확인한다.
 5. 화면의 '프로젝트' 제목이 `h2`, '나를 소개하는 웹페이지' 제목이 `h3`에 대응하는지 확인한다.
 
-2026-09-07 Codex 검증: Python 표준 라이브러리의 HTML 파서로 위 포함 관계와 제목 단계를 검사했다. `body`의 자식은 `header`, `main`, `footer`이며 `main` 안에 다섯 `section`, Projects 안에 한 `article`이 있음을 확인했다. 이는 소스 구조 검사이며 HTML 표준 전체에 대한 적합성 검사는 아니다.
-
-현재 도구 환경에는 브라우저가 없어 실제 Chrome 화면과 Elements 확인은 수행하지 않았다. 사용자 직접 실습 결과도 아직 확인되지 않았다.
+2026-09-07 소스 구조 검사 결과: Python 표준 라이브러리의 HTML 파서로 위 포함 관계와 제목 단계를 검사했다. `body`의 자식은 `header`, `main`, `footer`이며 `main` 안에 다섯 `section`, Projects 안에 한 `article`이 있음을 확인했다. 이는 소스 구조 검사이며 HTML 표준 전체에 대한 적합성 검사는 아니다.
 
 ## 6. 질문과 추가 확인
 
-아직 이 개념에 대한 사용자 질문이나 이해 확인 결과는 없다. 다음 실습에서 'Projects 전체를 section으로, 개별 카드를 article로 표현한 이유'를 자신의 말로 설명할 수 있는지 확인한다.
+추가 확인: Projects 전체는 하나의 주제를 묶으므로 `section`, 개별 프로젝트는 제목·설명·링크만으로 독립적으로 읽을 수 있으므로 `article`로 표현한다. 실제 코드에서 각 요소가 감싸는 범위를 비교한다.
 
 ## 7. 참고자료
-
-아래 자료는 Codex가 설명을 정리할 때 확인했다. 사용자가 읽었다는 의미는 아니다.
 
 - [과제 요구사항 PDF 3쪽](../assignment-requirements.pdf): 필수 시맨틱 태그와 화면 영역 확인.
 - [WHATWG HTML Living Standard — Sections](https://html.spec.whatwg.org/multipage/sections.html): 4.3.2~4.3.4, 4.3.6, 4.3.8~4.3.9의 article·section·nav·제목·header·footer 의미를 태그 선택에 적용.
