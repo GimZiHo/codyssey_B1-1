@@ -8,3 +8,4 @@
 | 002 | 앵커 링크 | 내비게이션과 Hero에서 페이지 내부 영역으로 이동 | [앵커 링크로 페이지 안에서 이동하기](002-anchor-links.md) |
 | 003 | 외부 CSS·JavaScript 연결 | 스타일시트 적용과 defer를 통한 스크립트 연결 | [HTML에 외부 CSS와 JavaScript 연결하기](003-external-css-javascript.md) |
 | 004 | CSS 변수 | 공통 색상·글꼴·간격 값 정의와 참조 | [CSS 변수로 공통 스타일 값 관리하기](004-css-custom-properties.md) |
+| 005 | 속성 선택자 | data-theme 값에 따른 다크 모드 색상 적용 | [속성 선택자로 다크 모드 색상 적용하기](005-theme-attribute-selector.md) |

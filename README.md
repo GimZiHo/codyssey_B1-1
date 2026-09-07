@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수를 구현한 단계입니다. 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수와 다크 모드 색상을 구현한 단계입니다. 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -29,6 +29,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 ## 현재 구현 범위와 학습 포인트
 
+- `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 전환 버튼과 설정 저장, 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
+
 - `header`는 상단 소개·메뉴, `nav`는 이동 링크, `main`은 본문, `section`은 주제별 영역, `article`은 독립적으로 읽을 수 있는 프로젝트, `footer`는 저작권·소셜 링크를 나타냅니다.
 - `href="#about"`은 `id="about"`인 영역으로 이동합니다. 기본 앵커 이동에는 JavaScript가 필요하지 않습니다.
 - 제목은 페이지의 `h1`, 섹션의 `h2`, 프로젝트의 `h3` 순서로 구성했습니다.
@@ -41,8 +43,9 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - HTML의 ID 중복 여부, 내부 앵커 대상, label 연결, 로컬 리소스 경로, JavaScript 문법 검사와 SVG 구문 검사를 통과했습니다.
 - Chromium 153.0.8010.12, 1280×720, JavaScript 비활성화 조건에서 내부 링크 아홉 개의 클릭, 소개 링크의 Enter 키 이동, `#projects` 직접 접속을 검증했습니다. [검증 조건과 실습 절차](docs/learning/002-anchor-links.md#5-확인-방법과-결과)
 - 같은 브라우저·화면 크기에서 JavaScript를 활성화하고 CSS·JavaScript의 200 응답, CSS 적용과 `defer` 실행 시점을 확인했습니다. [외부 파일 연결 검증](docs/learning/003-external-css-javascript.md#5-확인-방법과-결과)
-
 - CSS 변수 변경 시 링크 11개의 색상과 다섯 섹션의 여백이 함께 변경되고 새로고침으로 복원되는지 확인했습니다. [조건과 결과](docs/learning/004-css-custom-properties.md#5-확인-방법과-결과)
+
+- `data-theme`를 dark로 지정했을 때의 색상 변화와 light 지정·속성 제거 시 복원을 검증했습니다. [다크 모드 색상 검증](docs/learning/005-theme-attribute-selector.md#5-확인-방법과-결과)
 
 ## 학습 기록
 
@@ -51,5 +54,5 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [시맨틱 HTML로 페이지 구조 표현하기](docs/learning/001-semantic-html.md): `src/index.html`의 상단 메뉴, 본문, 프로젝트 카드와 하단 정보에 태그를 선택한 이유를 정리했습니다.
 - [앵커 링크로 페이지 안에서 이동하기](docs/learning/002-anchor-links.md): 내비게이션과 Hero의 `href`를 각 영역의 `id`에 연결하고, 클릭·키보드 이동 원리와 확인 방법을 정리했습니다.
 - [HTML에 외부 CSS와 JavaScript 연결하기](docs/learning/003-external-css-javascript.md): `head`의 파일 경로, 스타일 적용과 `defer` 실행 흐름을 확인했습니다.
-
 - [CSS 변수로 공통 스타일 값 관리하기](docs/learning/004-css-custom-properties.md): `:root`에서 정의한 색상·글꼴·간격을 `var()`로 참조합니다.
+- [속성 선택자로 다크 모드 색상 적용하기](docs/learning/005-theme-attribute-selector.md): `data-theme` 값으로 색상 변수의 적용 조건을 정합니다.

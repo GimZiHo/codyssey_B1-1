@@ -40,7 +40,7 @@ a {
 | `--space-page` | body 안쪽 여백 | `1rem` |
 | `--space-section` | section의 블록 방향 바깥 여백 | `3rem` |
 
-현재 가로쓰기에서 `margin-block`은 위·아래 바깥 여백을 지정한다. 다크 모드 변수와 반응형 배치는 이후 별도로 구현한다.
+현재 가로쓰기에서 `margin-block`은 위·아래 바깥 여백을 지정한다. 다크 모드 변수는 [속성 선택자 학습](005-theme-attribute-selector.md)에서 추가했다. 반응형 배치는 이후 구현한다.
 
 ## 4. 실행 흐름
 

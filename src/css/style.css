@@ -9,6 +9,13 @@
   --space-section: 3rem;
 }
 
+/* html 요소의 data-theme가 dark일 때 색상 변수만 바꾼다. */
+[data-theme="dark"] {
+  --color-background: #111827;
+  --color-text: #f3f4f6;
+  --color-link: #93c5fd;
+}
+
 body {
   max-width: 64rem;
   margin: 0 auto;
