@@ -1,0 +1,24 @@
+/* HTML 구조를 읽기 위한 최소 스타일. 반응형 레이아웃은 다음 단계에서 구현한다. */
+body {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+
+section {
+  margin-block: 3rem;
+}
+
+label {
+  display: block;
+}
+
+input,
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 30rem;
+  font: inherit;
+}

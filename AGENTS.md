@@ -23,16 +23,16 @@
 ### 1. 개발 환경과 HTML 구조 — PDF 2~3쪽
 
 - [ ] VS Code와 Live Server로 개발 환경을 구성한다.
-- [ ] HTML, 외부 CSS, 외부 JavaScript, 이미지를 역할별로 분리하고 올바르게 연결한다. JavaScript에는 `defer`를 사용한다.
-- [ ] `header`, `nav`, `main`, `section`, `article`, `footer`를 의미에 맞게 사용한다.
-- [ ] Hero에 인사말과 CTA 버튼을 배치한다.
+- [x] HTML, 외부 CSS, 외부 JavaScript, 이미지를 역할별로 분리하고 올바르게 연결한다. JavaScript에는 `defer`를 사용한다.
+- [x] `header`, `nav`, `main`, `section`, `article`, `footer`를 의미에 맞게 사용한다.
+- [x] Hero에 인사말과 CTA 버튼을 배치한다.
 - [ ] About에 자기소개와 프로필 이미지를 배치한다.
-- [ ] Skills에 기술 스택 목록을 배치한다.
+- [x] Skills에 기술 스택 목록을 배치한다.
 - [ ] Projects에 GitHub API로 가져온 저장소 카드를 표시한다.
-- [ ] Contact에 문의 폼을 배치한다.
-- [ ] Footer에 저작권과 소셜 링크를 배치한다.
-- [ ] 내비게이션에 각 섹션으로 이동하는 앵커 링크를 둔다.
-- [ ] 모든 이미지에 의미 있는 `alt`를 지정하고 폼의 `label`과 입력 요소를 `for`–`id`로 연결한다.
+- [x] Contact에 문의 폼을 배치한다.
+- [x] Footer에 저작권과 소셜 링크를 배치한다.
+- [x] 내비게이션에 각 섹션으로 이동하는 앵커 링크를 둔다.
+- [x] 모든 이미지에 의미 있는 `alt`를 지정하고 폼의 `label`과 입력 요소를 `for`–`id`로 연결한다.
 
 ### 2. 스타일과 반응형 레이아웃 — PDF 3~4쪽
 
