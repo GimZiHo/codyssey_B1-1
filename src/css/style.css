@@ -1,14 +1,30 @@
-/* HTML 구조를 읽기 위한 최소 스타일. 반응형 레이아웃은 다음 단계에서 구현한다. */
+/* 페이지 전체에서 사용할 색상, 글꼴, 간격의 기본값. */
+:root {
+  --color-background: #ffffff;
+  --color-text: #1f2937;
+  --color-link: #1d4ed8;
+  --font-family: sans-serif;
+  --line-height: 1.6;
+  --space-page: 1rem;
+  --space-section: 3rem;
+}
+
 body {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 1rem;
-  font-family: sans-serif;
-  line-height: 1.6;
+  padding: var(--space-page);
+  font-family: var(--font-family);
+  line-height: var(--line-height);
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+a {
+  color: var(--color-link);
 }
 
 section {
-  margin-block: 3rem;
+  margin-block: var(--space-section);
 }
 
 label {

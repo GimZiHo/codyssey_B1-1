@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대와 외부 CSS·JavaScript 연결을 구현한 단계입니다. 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수를 구현한 단계입니다. 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -12,7 +12,7 @@
 - `docs/`: 과제 PDF와 프로젝트 문서를 보관합니다.
 - `docs/learning/`: 실제 코드에 적용한 개념과 검증 결과를 기록합니다.
 - `src/index.html`: Hero, About, Skills, Projects, Contact, Footer와 섹션 이동 링크를 정의합니다.
-- `src/css/`: 스타일시트를 보관합니다. 현재는 가독성을 위한 최소 스타일만 적용했습니다.
+- `src/css/`: 스타일시트를 보관합니다. 색상·글꼴·간격을 CSS 변수로 관리하며 최소 스타일을 적용했습니다.
 - `src/js/`: JavaScript를 보관합니다. 현재는 `defer`로 연결한 파일만 준비했습니다.
 - `src/images/`: 웹사이트에서 사용하는 이미지를 보관합니다. 현재 프로필은 직접 작성한 임시 SVG입니다.
 
@@ -42,6 +42,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - Chromium 153.0.8010.12, 1280×720, JavaScript 비활성화 조건에서 내부 링크 아홉 개의 클릭, 소개 링크의 Enter 키 이동, `#projects` 직접 접속을 검증했습니다. [검증 조건과 실습 절차](docs/learning/002-anchor-links.md#5-확인-방법과-결과)
 - 같은 브라우저·화면 크기에서 JavaScript를 활성화하고 CSS·JavaScript의 200 응답, CSS 적용과 `defer` 실행 시점을 확인했습니다. [외부 파일 연결 검증](docs/learning/003-external-css-javascript.md#5-확인-방법과-결과)
 
+- CSS 변수 변경 시 링크 11개의 색상과 다섯 섹션의 여백이 함께 변경되고 새로고침으로 복원되는지 확인했습니다. [조건과 결과](docs/learning/004-css-custom-properties.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -49,3 +51,5 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [시맨틱 HTML로 페이지 구조 표현하기](docs/learning/001-semantic-html.md): `src/index.html`의 상단 메뉴, 본문, 프로젝트 카드와 하단 정보에 태그를 선택한 이유를 정리했습니다.
 - [앵커 링크로 페이지 안에서 이동하기](docs/learning/002-anchor-links.md): 내비게이션과 Hero의 `href`를 각 영역의 `id`에 연결하고, 클릭·키보드 이동 원리와 확인 방법을 정리했습니다.
 - [HTML에 외부 CSS와 JavaScript 연결하기](docs/learning/003-external-css-javascript.md): `head`의 파일 경로, 스타일 적용과 `defer` 실행 흐름을 확인했습니다.
+
+- [CSS 변수로 공통 스타일 값 관리하기](docs/learning/004-css-custom-properties.md): `:root`에서 정의한 색상·글꼴·간격을 `var()`로 참조합니다.

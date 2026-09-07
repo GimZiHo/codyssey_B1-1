@@ -46,7 +46,7 @@
 
 ### 2. 스타일과 반응형 레이아웃 — PDF 3~4쪽
 
-- [ ] `css/style.css`를 사용하고 `:root`에 색상, 폰트, 간격 변수를 정의한다.
+- [x] `css/style.css`를 사용하고 `:root`에 색상, 폰트, 간격 변수를 정의한다.
 - [ ] `[data-theme="dark"]`에 다크 모드 변수를 정의한다.
 - [ ] 내비게이션은 Flexbox로 로고를 왼쪽, 메뉴를 오른쪽에 배치한다.
 - [ ] Projects 카드는 Grid의 `auto-fit`, `minmax`로 반응형 배치한다.
