@@ -10,6 +10,7 @@
 주요 디렉터리:
 
 - `docs/`: 과제 PDF와 프로젝트 문서를 보관합니다.
+- `docs/learning/`: 실제 코드에 적용한 개념과 검증 결과를 기록합니다.
 - `src/index.html`: Hero, About, Skills, Projects, Contact, Footer와 섹션 이동 링크를 정의합니다.
 - `src/css/`: 스타일시트를 보관합니다. 현재는 가독성을 위한 최소 스타일만 적용했습니다.
 - `src/js/`: JavaScript를 보관합니다. 현재는 `defer`로 연결한 파일만 준비했습니다.
@@ -39,3 +40,9 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - HTML의 ID 중복 여부, 내부 앵커 대상, label 연결, 로컬 리소스 경로, JavaScript 문법 검사와 SVG 구문 검사를 통과했습니다.
 - VS Code Live Server와 실제 Chrome에서의 화면·클릭 검증은 아직 완료하지 않았습니다.
+
+## 학습 기록
+
+[학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
+
+- [시맨틱 HTML로 페이지 구조 표현하기](docs/learning/001-semantic-html.md): `src/index.html`의 상단 메뉴, 본문, 프로젝트 카드와 하단 정보에 태그를 선택한 이유를 정리했습니다. 기존 구현을 바탕으로 다시 설명한 첫 개념이며, 사용자 이해와 브라우저 실습 완료 여부는 아직 확인되지 않았습니다.
