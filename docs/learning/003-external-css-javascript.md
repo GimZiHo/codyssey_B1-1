@@ -63,6 +63,21 @@ CSS 적용을 관찰할 때는 기존 `body` 규칙의 `padding: 1rem`을 사용
 
 ## 6. 질문과 추가 확인
 
+질문: Network 탭의 Status 코드는 무엇을 뜻하는가?
+
+HTTP 상태 코드는 서버가 요청의 처리 결과를 알려주는 세 자리 숫자다. 각 행은 HTML, CSS, JavaScript 등 개별 리소스 요청에 해당한다. 첫 자리가 1이면 중간 안내, 2이면 성공, 3이면 리다이렉션 등 추가 처리, 4이면 요청 관련 오류, 5이면 서버 오류를 뜻한다.
+
+| 코드 | 의미 | 파일 연결에서 확인할 점 |
+| --- | --- | --- |
+| 200 OK | 요청 성공 | Response에서 요청한 파일 내용이 맞는지 확인한다. |
+| 304 Not Modified | 조건부 요청에서 파일이 변경되지 않음 | 브라우저에 저장한 캐시를 재사용한다. 오류가 아니다. |
+| 301 / 302 | 다른 주소로 이동하도록 응답 | 이어지는 요청의 주소와 결과를 확인한다. |
+| 403 Forbidden | 서버가 요청 처리를 거부 | 접근 제한 등을 확인한다. |
+| 404 Not Found | 요청한 리소스를 찾지 못함 | 파일 경로·이름·대소문자를 확인한다. |
+| 500 Internal Server Error | 서버 내부에서 예상하지 못한 오류 발생 | 서버 로그를 확인한다. |
+
+캐시는 이미 받은 내용을 저장해 재사용하는 방식이다. 예를 들어 `style.css`가 304이면 서버가 새 파일 본문을 보내지 않고 기존 사본을 사용하게 한다. 200은 요청 성공을 뜻하며 CSS나 JavaScript 코드 자체의 올바른 동작까지 보장하지 않는다. 요청을 클릭해 Headers의 Request URL과 Status Code, Response의 내용을 함께 확인한다. 위 표는 코드의 의미 설명이며, 이 프로젝트에서 실제 확인한 응답은 5절의 200이다.
+
 - CSS가 적용되지 않으면 파일이 존재하는지만 보지 말고 Network의 요청 주소와 응답 내용도 확인한다.
 - `defer`는 파일 로드 실패를 해결하는 속성이 아니다. 경로가 틀리면 먼저 경로를 수정한다.
 
@@ -71,5 +86,6 @@ CSS 적용을 관찰할 때는 기존 `body` 규칙의 `padding: 1rem`을 사용
 - [과제 PDF 3~4쪽](../assignment-requirements.pdf): 외부 파일 분리·연결과 defer 요구사항.
 - [WHATWG HTML — The link element](https://html.spec.whatwg.org/multipage/semantics.html#the-link-element): 스타일시트 연결에 사용하는 rel과 href.
 - [WHATWG HTML — defer](https://html.spec.whatwg.org/multipage/scripting.html#attr-script-defer): 일반 외부 스크립트의 다운로드와 실행 시점.
+- [RFC 9110 — Status Codes, 15절](https://www.rfc-editor.org/rfc/rfc9110.html#name-status-codes): Network에서 확인하는 HTTP 상태 코드의 분류와 의미.
 
 HTML Living Standard를 2026-09-07에 확인했다.
