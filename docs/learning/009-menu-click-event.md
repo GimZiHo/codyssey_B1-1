@@ -74,6 +74,26 @@ menuButton.addEventListener('click', () => {
 
 ## 6. 질문과 추가 확인
 
+질문: `ul.active`의 `display: flex`를 빼면 메뉴가 사라지는 이유는 무엇인가?
+
+모바일에서는 다음 두 규칙이 메뉴의 표시 여부를 결정한다.
+
+```css
+nav.menu-ready ul {
+  display: none;
+}
+
+nav.menu-ready ul.active {
+  display: flex;
+}
+```
+
+active가 추가돼도 첫 번째 선택자에 계속 해당한다. 두 번째 규칙의 display 선언을 없애면 숨김을 덮어쓸 값이 없어 첫 번째 규칙의 `display: none`이 적용된다. none은 요소와 자식들의 화면 배치 상자를 만들지 않으므로 메뉴와 그 공간이 보이지 않게 된다. DOM에서 요소를 삭제하는 것은 아니다.
+
+active는 개발자가 정한 클래스 이름이며 자체적인 표시 기능이 없다. 초기 `nav ul { display: flex; }`보다 `nav.menu-ready ul`이 클래스 조건을 더 포함해 명시도(같은 속성에 적용할 규칙을 정할 때 비교하는 선택자의 우선순위)가 높다. 열림 규칙은 여기에 active 조건을 더해 숨김 규칙보다 명시도가 높다.
+
+직접 확인할 때는 375px에서 메뉴를 연 다음 Elements에서 `nav.menu-ready ul.active`의 `display: flex` 체크를 해제한다. 예상 결과는 active 클래스와 aria-expanded는 그대로인데 화면에서는 메뉴가 숨겨지는 것이다. 다시 체크하면 표시된다. `display: block`으로 바꾸어도 메뉴는 표시되지만 목록 항목의 Flexbox 가로 배치가 풀린다. 768px 이상에는 별도의 메뉴 표시 규칙이 있으므로 모바일 폭에서 비교한다.
+
 추가 확인: JavaScript는 display 값을 직접 바꾸지 않는다. 클래스만 바꾸며 실제 표시 방식은 CSS가 결정한다.
 
 ## 7. 참고자료
@@ -81,5 +101,7 @@ menuButton.addEventListener('click', () => {
 - [과제 PDF 4쪽](../assignment-requirements.pdf): addEventListener와 classList.toggle 메뉴 요구사항.
 - [WHATWG DOM — addEventListener](https://dom.spec.whatwg.org/#dom-eventtarget-addeventlistener): 이벤트와 함수 연결.
 - [WHATWG DOM — toggle](https://dom.spec.whatwg.org/#dom-domtokenlist-toggle): 클래스 토글과 반환값.
+- [W3C Selectors Level 4 — Specificity](https://www.w3.org/TR/selectors-4/#specificity-rules): 겹치는 선택자의 명시도 비교.
+- [W3C CSS Display Level 3 — none](https://www.w3.org/TR/css-display-3/#valdef-display-none): 요소와 자식의 배치 상자를 생성하지 않는 동작.
 
 DOM Living Standard를 2026-09-08에 확인했다.
