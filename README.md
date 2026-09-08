@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수와 다크 모드 색상을 구현한 단계입니다. 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상과 Flexbox 내비게이션을 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -29,6 +29,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 ## 현재 구현 범위와 학습 포인트
 
+- 내비게이션은 Flexbox로 이름과 메뉴를 양쪽에 배치하고 좁은 화면에서 줄바꿈합니다. 모바일 햄버거 메뉴와 브레이크포인트는 이후 구현합니다.
+
 - `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 전환 버튼과 설정 저장, 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
 
 - `header`는 상단 소개·메뉴, `nav`는 이동 링크, `main`은 본문, `section`은 주제별 영역, `article`은 독립적으로 읽을 수 있는 프로젝트, `footer`는 저작권·소셜 링크를 나타냅니다.
@@ -47,6 +49,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - `data-theme`를 dark로 지정했을 때의 색상 변화와 light 지정·속성 제거 시 복원을 검증했습니다. [다크 모드 색상 검증](docs/learning/005-theme-attribute-selector.md#5-확인-방법과-결과)
 
+- 1280×720과 375×720에서 내비게이션 정렬·줄바꿈·가로 넘침과 링크 이동을 검증했습니다. [실행 화면과 결과](docs/learning/006-flexbox-navigation.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -56,3 +60,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [HTML에 외부 CSS와 JavaScript 연결하기](docs/learning/003-external-css-javascript.md): `head`의 파일 경로, 스타일 적용과 `defer` 실행 흐름을 확인했습니다.
 - [CSS 변수로 공통 스타일 값 관리하기](docs/learning/004-css-custom-properties.md): `:root`에서 정의한 색상·글꼴·간격을 `var()`로 참조합니다.
 - [속성 선택자로 다크 모드 색상 적용하기](docs/learning/005-theme-attribute-selector.md): `data-theme` 값으로 색상 변수의 적용 조건을 정합니다.
+- [Flexbox로 내비게이션 배치하기](docs/learning/006-flexbox-navigation.md): nav와 ul의 직접 자식을 각각 정렬하며, 넓은 화면과 좁은 화면 캡처를 제공합니다.

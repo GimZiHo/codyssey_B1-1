@@ -30,6 +30,24 @@ a {
   color: var(--color-link);
 }
 
+/* nav는 이름과 메뉴 묶음을, ul은 개별 메뉴를 배치한다. */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-page);
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-page);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 section {
   margin-block: var(--space-section);
 }
