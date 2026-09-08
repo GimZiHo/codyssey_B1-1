@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상과 Flexbox 내비게이션을 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상, Flexbox 내비게이션과 Grid 프로젝트 배치를 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -36,7 +36,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - `header`는 상단 소개·메뉴, `nav`는 이동 링크, `main`은 본문, `section`은 주제별 영역, `article`은 독립적으로 읽을 수 있는 프로젝트, `footer`는 저작권·소셜 링크를 나타냅니다.
 - `href="#about"`은 `id="about"`인 영역으로 이동합니다. 기본 앵커 이동에는 JavaScript가 필요하지 않습니다.
 - 제목은 페이지의 `h1`, 섹션의 `h2`, 프로젝트의 `h3` 순서로 구성했습니다.
-- Projects는 현재 저장소를 소개하는 정적 카드입니다. API 결과가 아닙니다.
+- Projects는 현재 저장소를 소개하는 정적 카드입니다. API 결과가 아닙니다. Grid가 화면 폭과 카드 수에 따라 열 수를 정합니다. 현재 카드 하나는 전체 폭을 사용합니다.
 - Contact는 이름·이메일·메시지와 연결된 label을 갖춘 구조만 준비했습니다. 검증과 제출 동작을 구현할 때까지 입력과 제출을 비활성화했습니다.
 - 자기소개 문구와 임시 프로필 이미지는 추후 실제 소개 내용으로 보완합니다.
 
@@ -51,6 +51,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 1280×720과 375×720에서 내비게이션 정렬·줄바꿈·가로 넘침과 링크 이동을 검증했습니다. [실행 화면과 결과](docs/learning/006-flexbox-navigation.md#5-확인-방법과-결과)
 
+- 임시 실습 카드 네 개로 1280·768·375·320px 화면에서 Grid의 3·2·1·1열 배치와 가로 넘침을 검증했습니다. [실습 캡처와 결과](docs/learning/007-grid-projects.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -61,3 +63,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [CSS 변수로 공통 스타일 값 관리하기](docs/learning/004-css-custom-properties.md): `:root`에서 정의한 색상·글꼴·간격을 `var()`로 참조합니다.
 - [속성 선택자로 다크 모드 색상 적용하기](docs/learning/005-theme-attribute-selector.md): `data-theme` 값으로 색상 변수의 적용 조건을 정합니다.
 - [Flexbox로 내비게이션 배치하기](docs/learning/006-flexbox-navigation.md): nav와 ul의 직접 자식을 각각 정렬하며, 넓은 화면과 좁은 화면 캡처를 제공합니다.
+- [Grid로 프로젝트 카드 자동 배치하기](docs/learning/007-grid-projects.md): `auto-fit`과 `minmax()`로 카드 열 너비와 개수를 결정합니다.

@@ -49,7 +49,7 @@
 - [x] `css/style.css`를 사용하고 `:root`에 색상, 폰트, 간격 변수를 정의한다.
 - [x] `[data-theme="dark"]`에 다크 모드 변수를 정의한다.
 - [x] 내비게이션은 Flexbox로 로고를 왼쪽, 메뉴를 오른쪽에 배치한다.
-- [ ] Projects 카드는 Grid의 `auto-fit`, `minmax`로 반응형 배치한다.
+- [x] Projects 카드는 Grid의 `auto-fit`, `minmax`로 반응형 배치한다.
 - [ ] 모바일 퍼스트로 작성하고 768px, 1024px 브레이크포인트를 사용한다.
 - [ ] 모바일에서 내비게이션 메뉴를 숨기고 햄버거 버튼을 표시한다.
 - [ ] 버튼과 카드에 hover 효과와 transition을, 카드에 box-shadow를 적용한다.

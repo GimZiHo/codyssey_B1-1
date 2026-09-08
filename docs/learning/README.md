@@ -10,3 +10,4 @@
 | 004 | CSS 변수 | 공통 색상·글꼴·간격 값 정의와 참조 | [CSS 변수로 공통 스타일 값 관리하기](004-css-custom-properties.md) |
 | 005 | 속성 선택자 | data-theme 값에 따른 다크 모드 색상 적용 | [속성 선택자로 다크 모드 색상 적용하기](005-theme-attribute-selector.md) |
 | 006 | Flexbox | 내비게이션 양쪽 정렬과 공간 부족 시 줄바꿈 | [Flexbox로 내비게이션 배치하기](006-flexbox-navigation.md) |
+| 007 | CSS Grid | 화면 폭과 카드 수에 따른 프로젝트 열 자동 배치 | [Grid로 프로젝트 카드 자동 배치하기](007-grid-projects.md) |

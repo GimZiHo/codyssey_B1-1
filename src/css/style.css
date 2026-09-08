@@ -52,6 +52,18 @@ section {
   margin-block: var(--space-section);
 }
 
+#project-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-page);
+}
+
+#project-list article {
+  padding: var(--space-page);
+  border: 1px solid currentColor;
+  overflow-wrap: anywhere;
+}
+
 label {
   display: block;
 }
