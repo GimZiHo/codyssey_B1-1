@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상, Flexbox 내비게이션과 Grid 프로젝트 배치를 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상, Flexbox 내비게이션과 Grid 프로젝트 배치와 768px·1024px 미디어 쿼리를 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -29,7 +29,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 ## 현재 구현 범위와 학습 포인트
 
-- 내비게이션은 Flexbox로 이름과 메뉴를 양쪽에 배치하고 좁은 화면에서 줄바꿈합니다. 모바일 햄버거 메뉴와 브레이크포인트는 이후 구현합니다.
+- 내비게이션은 모바일에서 세로로, 768px 이상에서 가로로 배치합니다. 1024px 이상에서는 메뉴 간격을 넓힙니다. 모바일 햄버거 메뉴는 이후 구현합니다.
 
 - `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 전환 버튼과 설정 저장, 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
 
@@ -53,6 +53,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 임시 실습 카드 네 개로 1280·768·375·320px 화면에서 Grid의 3·2·1·1열 배치와 가로 넘침을 검증했습니다. [실습 캡처와 결과](docs/learning/007-grid-projects.md#5-확인-방법과-결과)
 
+- 320·375·767·768·1023·1024·1280px에서 미디어 쿼리 조건, 정렬, 가로 넘침을 검증했습니다. [경계 전후 캡처와 결과](docs/learning/008-media-queries.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -64,3 +66,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [속성 선택자로 다크 모드 색상 적용하기](docs/learning/005-theme-attribute-selector.md): `data-theme` 값으로 색상 변수의 적용 조건을 정합니다.
 - [Flexbox로 내비게이션 배치하기](docs/learning/006-flexbox-navigation.md): nav와 ul의 직접 자식을 각각 정렬하며, 넓은 화면과 좁은 화면 캡처를 제공합니다.
 - [Grid로 프로젝트 카드 자동 배치하기](docs/learning/007-grid-projects.md): `auto-fit`과 `minmax()`로 카드 열 너비와 개수를 결정합니다.
+- [미디어 쿼리로 화면 폭에 맞게 배치 바꾸기](docs/learning/008-media-queries.md): 모바일을 기본으로 두고 768px·1024px에서 내비게이션 스타일을 추가합니다.

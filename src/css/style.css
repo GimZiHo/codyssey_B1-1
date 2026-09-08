@@ -33,8 +33,9 @@ a {
 /* nav는 이름과 메뉴 묶음을, ul은 개별 메뉴를 배치한다. */
 nav {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: var(--space-page);
 }
@@ -74,4 +75,18 @@ textarea {
   width: 100%;
   max-width: 30rem;
   font: inherit;
+}
+
+/* 모바일 기본 배치에 넓은 화면의 변경 사항을 추가한다. */
+@media (min-width: 768px) {
+  nav {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  nav ul {
+    column-gap: var(--space-section);
+  }
 }
