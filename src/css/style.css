@@ -49,6 +49,24 @@ nav ul {
   list-style: none;
 }
 
+#menu-toggle {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: 1px solid currentColor;
+  cursor: pointer;
+}
+
+nav.menu-ready ul {
+  display: none;
+}
+
+nav.menu-ready ul.active {
+  display: flex;
+}
+
 section {
   margin-block: var(--space-section);
 }
@@ -79,6 +97,14 @@ textarea {
 
 /* 모바일 기본 배치에 넓은 화면의 변경 사항을 추가한다. */
 @media (min-width: 768px) {
+  #menu-toggle {
+    display: none;
+  }
+
+  nav.menu-ready ul {
+    display: flex;
+  }
+
   nav {
     flex-direction: row;
     align-items: center;

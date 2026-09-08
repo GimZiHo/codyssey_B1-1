@@ -51,7 +51,7 @@
 - [x] 내비게이션은 Flexbox로 로고를 왼쪽, 메뉴를 오른쪽에 배치한다.
 - [x] Projects 카드는 Grid의 `auto-fit`, `minmax`로 반응형 배치한다.
 - [x] 모바일 퍼스트로 작성하고 768px, 1024px 브레이크포인트를 사용한다.
-- [ ] 모바일에서 내비게이션 메뉴를 숨기고 햄버거 버튼을 표시한다.
+- [x] 모바일에서 내비게이션 메뉴를 숨기고 햄버거 버튼을 표시한다.
 - [ ] 버튼과 카드에 hover 효과와 transition을, 카드에 box-shadow를 적용한다.
 
 ### 3. JavaScript와 인터랙션 — PDF 4~5쪽
@@ -59,7 +59,7 @@
 - [ ] `const`, `let`을 사용하고 `addEventListener`로 이벤트를 연결한다.
 - [ ] `querySelector`, `querySelectorAll`, `textContent`, `innerHTML`, `classList.add/remove/toggle`을 활용한다.
 - [ ] `click`, `submit`, `scroll`, `input` 이벤트를 다루고 필요한 곳에 `event.preventDefault()`를 사용한다.
-- [ ] 햄버거 버튼을 누를 때 `classList.toggle('active')`로 메뉴를 열고 닫는다.
+- [x] 햄버거 버튼을 누를 때 `classList.toggle('active')`로 메뉴를 열고 닫는다.
 - [ ] 내비게이션 링크를 누르면 해당 섹션으로 부드럽게 이동한다.
 - [ ] 스크롤 300px 이상에서 맨 위로 이동하는 버튼을 표시하고 클릭 시 맨 위로 이동한다.
 - [ ] 스크롤 60px 이상에서 내비게이션 배경색을 변경한다.

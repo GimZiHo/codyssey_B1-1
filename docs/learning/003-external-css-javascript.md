@@ -23,6 +23,8 @@
 
 ## 3. 프로젝트 적용
 
+이 문서의 주석뿐인 JavaScript와 실행 결과는 외부 파일 연결 당시의 상태다. 현재 main.js에는 [모바일 메뉴 클릭 이벤트](009-menu-click-event.md)가 추가되어 있으며 Network에서 해당 코드를 확인할 수 있다.
+
 [src/index.html](../../src/index.html)의 `head`에 다음 두 줄이 있다.
 
 ```html

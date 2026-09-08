@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상, Flexbox 내비게이션과 Grid 프로젝트 배치와 768px·1024px 미디어 쿼리를 구현한 단계입니다. 전체 반응형 디자인, 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
+현재는 여섯 섹션의 시맨틱 HTML 뼈대, 외부 CSS·JavaScript 연결과 공통 스타일용 CSS 변수, 다크 모드 색상, Flexbox 내비게이션과 Grid 프로젝트 배치와 768px·1024px 미디어 쿼리와 모바일 메뉴 토글을 구현한 단계입니다. 전체 반응형 디자인, 나머지 인터랙션, API 연동과 배포는 아직 구현하지 않았습니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -13,7 +13,7 @@
 - `docs/learning/`: 실제 코드에 적용한 개념과 검증 결과를 기록합니다.
 - `src/index.html`: Hero, About, Skills, Projects, Contact, Footer와 섹션 이동 링크를 정의합니다.
 - `src/css/`: 스타일시트를 보관합니다. 색상·글꼴·간격을 CSS 변수로 관리하며 최소 스타일을 적용했습니다.
-- `src/js/`: JavaScript를 보관합니다. 현재는 `defer`로 연결한 파일만 준비했습니다.
+- `src/js/`: JavaScript를 보관합니다. 모바일 메뉴의 클릭 이벤트를 연결합니다.
 - `src/images/`: 웹사이트에서 사용하는 이미지를 보관합니다. 현재 프로필은 직접 작성한 임시 SVG입니다.
 
 ## 실행과 확인
@@ -29,7 +29,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 ## 현재 구현 범위와 학습 포인트
 
-- 내비게이션은 모바일에서 세로로, 768px 이상에서 가로로 배치합니다. 1024px 이상에서는 메뉴 간격을 넓힙니다. 모바일 햄버거 메뉴는 이후 구현합니다.
+- 내비게이션은 모바일에서 세로로, 768px 이상에서 가로로 배치합니다. 1024px 이상에서는 메뉴 간격을 넓힙니다. 모바일에서는 햄버거 버튼으로 메뉴를 열고 닫습니다.
 
 - `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 전환 버튼과 설정 저장, 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
 
@@ -55,6 +55,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 320·375·767·768·1023·1024·1280px에서 미디어 쿼리 조건, 정렬, 가로 넘침을 검증했습니다. [경계 전후 캡처와 결과](docs/learning/008-media-queries.md#5-확인-방법과-결과)
 
+- 모바일 메뉴의 클릭·Enter·Space 조작, 화면 폭에 따른 표시, JavaScript 비활성화 시 링크 사용을 검증했습니다. [메뉴 열림·닫힘 캡처](docs/learning/009-menu-click-event.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -67,3 +69,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [Flexbox로 내비게이션 배치하기](docs/learning/006-flexbox-navigation.md): nav와 ul의 직접 자식을 각각 정렬하며, 넓은 화면과 좁은 화면 캡처를 제공합니다.
 - [Grid로 프로젝트 카드 자동 배치하기](docs/learning/007-grid-projects.md): `auto-fit`과 `minmax()`로 카드 열 너비와 개수를 결정합니다.
 - [미디어 쿼리로 화면 폭에 맞게 배치 바꾸기](docs/learning/008-media-queries.md): 모바일을 기본으로 두고 768px·1024px에서 내비게이션 스타일을 추가합니다.
+- [클릭 이벤트로 모바일 메뉴 열고 닫기](docs/learning/009-menu-click-event.md): addEventListener와 classList.toggle로 사용자 조작을 화면 변화에 연결합니다.
