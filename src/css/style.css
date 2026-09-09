@@ -117,10 +117,3 @@ textarea {
     column-gap: var(--space-section);
   }
 }
-
-/* 동작 줄이기를 선택한 환경에서는 이동 애니메이션을 사용하지 않는다. */
-@media (prefers-reduced-motion: reduce) {
-  :root {
-    scroll-behavior: auto;
-  }
-}

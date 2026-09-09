@@ -22,7 +22,7 @@
 2. 확장에서 **Live Server (Ritwick Dey)**를 설치합니다.
 3. `src/index.html`을 우클릭하고 **Open with Live Server**를 선택합니다.
 4. 브라우저에서 여섯 영역과 프로필 대체 이미지가 보이는지 확인합니다.
-5. 내비게이션과 Hero의 링크를 눌러 주소의 `#` 뒤 값과 이동한 영역이 일치하는지 확인합니다. CSS로 부드럽게 이동하며, 동작 줄이기 설정에서는 즉시 이동합니다. 모바일에서는 먼저 메뉴 버튼으로 내비게이션을 엽니다.
+5. 내비게이션과 Hero의 링크를 눌러 주소의 `#` 뒤 값과 이동한 영역이 일치하는지 확인합니다. CSS로 부드럽게 이동합니다. 모바일에서는 먼저 메뉴 버튼으로 내비게이션을 엽니다.
 6. 개발자 도구의 Network에서 `style.css`, `main.js`, `profile-placeholder.svg`가 정상적으로 로드되는지 확인합니다.
 
 Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.server 8000 --directory src`를 실행한 뒤 `http://localhost:8000`에 접속할 수 있습니다. 종료는 `Ctrl+C`입니다.
@@ -34,7 +34,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 전환 버튼과 설정 저장, 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
 
 - `header`는 상단 소개·메뉴, `nav`는 이동 링크, `main`은 본문, `section`은 주제별 영역, `article`은 독립적으로 읽을 수 있는 프로젝트, `footer`는 저작권·소셜 링크를 나타냅니다.
-- `href="#about"`은 `id="about"`인 영역으로 이동합니다. `:root`의 `scroll-behavior: smooth`가 이동을 부드럽게 하고, `prefers-reduced-motion: reduce`에서는 auto로 바꿉니다. 앵커 이동을 위한 JavaScript는 필요하지 않습니다.
+- `href="#about"`은 `id="about"`인 영역으로 이동합니다. `:root`의 `scroll-behavior: smooth`가 이동을 부드럽게 합니다. 앵커 이동을 위한 JavaScript는 필요하지 않습니다. 과제 범위에 맞춰 동작 줄이기 선호에 따라 이동 방식을 바꾸는 처리는 구현 범위에서 제외했습니다.
 - 제목은 페이지의 `h1`, 섹션의 `h2`, 프로젝트의 `h3` 순서로 구성했습니다.
 - Projects는 현재 저장소를 소개하는 정적 카드입니다. API 결과가 아닙니다. Grid가 화면 폭과 카드 수에 따라 열 수를 정합니다. 현재 카드 하나는 전체 폭을 사용합니다.
 - Contact는 이름·이메일·메시지와 연결된 label을 갖춘 구조만 준비했습니다. 검증과 제출 동작을 구현할 때까지 입력과 제출을 비활성화했습니다.
@@ -57,7 +57,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 모바일 메뉴의 클릭·Enter·Space 조작, 화면 폭에 따른 표시, JavaScript 비활성화 시 링크 사용을 검증했습니다. [메뉴 열림·닫힘 캡처](docs/learning/009-menu-click-event.md#5-확인-방법과-결과)
 
-- 일반·동작 줄이기 설정에서 스크롤 위치 변화를 비교하고 모바일 메뉴, JavaScript 비활성화, 키보드 이동과 뒤로 가기를 검증했습니다. [비교 목적·개발자 도구 사용법과 관찰값](docs/learning/010-smooth-scrolling.md#5-확인-방법과-결과)
+- 부드러운 스크롤의 중간 위치와 앵커 목적지 도착을 검증했습니다. 모바일 메뉴에서의 이동과 동작 줄이기 분기 제거 후의 동작도 확인했습니다. [검증 목적과 결과](docs/learning/010-smooth-scrolling.md#5-확인-방법과-결과)
 
 ## 학습 기록
 
@@ -72,4 +72,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [Grid로 프로젝트 카드 자동 배치하기](docs/learning/007-grid-projects.md): `auto-fit`과 `minmax()`로 카드 열 너비와 개수를 결정합니다.
 - [미디어 쿼리로 화면 폭에 맞게 배치 바꾸기](docs/learning/008-media-queries.md): 모바일을 기본으로 두고 768px·1024px에서 내비게이션 스타일을 추가합니다.
 - [클릭 이벤트로 모바일 메뉴 열고 닫기](docs/learning/009-menu-click-event.md): addEventListener와 classList.toggle로 사용자 조작을 화면 변화에 연결합니다.
-- [CSS로 앵커 이동을 부드럽게 만들기](docs/learning/010-smooth-scrolling.md): scroll-behavior로 이동 방식을 정하고 동작 줄이기 설정을 반영합니다.
+- [CSS로 앵커 이동을 부드럽게 만들기](docs/learning/010-smooth-scrolling.md): scroll-behavior로 이동 방식을 정합니다. 동작 줄이기의 의미와 도입 배경, 과제 범위에 따라 제외한 이유도 정리했습니다.
