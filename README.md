@@ -57,7 +57,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 모바일 메뉴의 클릭·Enter·Space 조작, 화면 폭에 따른 표시, JavaScript 비활성화 시 링크 사용을 검증했습니다. [메뉴 열림·닫힘 캡처](docs/learning/009-menu-click-event.md#5-확인-방법과-결과)
 
-- 일반·동작 줄이기 설정에서 스크롤 위치 변화를 비교하고 모바일 메뉴, JavaScript 비활성화, 키보드 이동과 뒤로 가기를 검증했습니다. [이동 장면과 관찰값](docs/learning/010-smooth-scrolling.md#5-확인-방법과-결과)
+- 일반·동작 줄이기 설정에서 스크롤 위치 변화를 비교하고 모바일 메뉴, JavaScript 비활성화, 키보드 이동과 뒤로 가기를 검증했습니다. [비교 목적·개발자 도구 사용법과 관찰값](docs/learning/010-smooth-scrolling.md#5-확인-방법과-결과)
 
 ## 학습 기록
 
