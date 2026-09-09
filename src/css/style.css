@@ -7,6 +7,7 @@
   --line-height: 1.6;
   --space-page: 1rem;
   --space-section: 3rem;
+  scroll-behavior: smooth;
 }
 
 /* html 요소의 data-theme가 dark일 때 색상 변수만 바꾼다. */
@@ -114,5 +115,12 @@ textarea {
 @media (min-width: 1024px) {
   nav ul {
     column-gap: var(--space-section);
+  }
+}
+
+/* 동작 줄이기를 선택한 환경에서는 이동 애니메이션을 사용하지 않는다. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
   }
 }

@@ -60,7 +60,7 @@
 - [ ] `querySelector`, `querySelectorAll`, `textContent`, `innerHTML`, `classList.add/remove/toggle`을 활용한다.
 - [ ] `click`, `submit`, `scroll`, `input` 이벤트를 다루고 필요한 곳에 `event.preventDefault()`를 사용한다.
 - [x] 햄버거 버튼을 누를 때 `classList.toggle('active')`로 메뉴를 열고 닫는다.
-- [ ] 내비게이션 링크를 누르면 해당 섹션으로 부드럽게 이동한다.
+- [x] 내비게이션 링크를 누르면 해당 섹션으로 부드럽게 이동한다.
 - [ ] 스크롤 300px 이상에서 맨 위로 이동하는 버튼을 표시하고 클릭 시 맨 위로 이동한다.
 - [ ] 스크롤 60px 이상에서 내비게이션 배경색을 변경한다.
 - [ ] 다크 모드를 토글하고 로컬스토리지에 저장해 새로고침 후에도 유지한다.
