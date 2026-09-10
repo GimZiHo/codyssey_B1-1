@@ -60,6 +60,18 @@ nav ul {
   cursor: pointer;
 }
 
+#scroll-top {
+  position: fixed;
+  right: var(--space-page);
+  bottom: var(--space-page);
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--color-background);
+  background-color: var(--color-link);
+  border: 0;
+  cursor: pointer;
+}
+
 nav.menu-ready ul {
   display: none;
 }

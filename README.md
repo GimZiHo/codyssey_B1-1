@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 HTML 구조, CSS 변수와 다크 모드 색상, Flexbox·Grid 배치, 768px·1024px 미디어 쿼리, 모바일 메뉴와 부드러운 섹션 이동을 구현했습니다. 나머지 스타일·인터랙션, 폼 검증, API 연동과 배포는 이후 구현합니다.
+현재는 여섯 섹션의 HTML 구조, CSS 변수와 다크 모드 색상, Flexbox·Grid 배치, 768px·1024px 미디어 쿼리, 모바일 메뉴, 부드러운 섹션 이동과 맨 위로 버튼을 구현했습니다. 나머지 스타일·인터랙션, 폼 검증, API 연동과 배포는 이후 구현합니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침과 요구사항 체크리스트](AGENTS.md)
@@ -13,7 +13,7 @@
 - `docs/learning/`: 실제 코드에 적용한 개념과 검증 결과를 기록합니다.
 - `src/index.html`: Hero, About, Skills, Projects, Contact, Footer와 섹션 이동 링크를 정의합니다.
 - `src/css/`: 스타일시트를 보관합니다. 색상·글꼴·간격을 CSS 변수로 관리하며 최소 스타일을 적용했습니다.
-- `src/js/`: JavaScript를 보관합니다. 모바일 메뉴의 클릭 이벤트를 연결합니다.
+- `src/js/`: JavaScript를 보관합니다. 모바일 메뉴의 클릭과 스크롤 위치에 따른 맨 위로 버튼 동작을 연결합니다.
 - `src/images/`: 웹사이트에서 사용하는 이미지를 보관합니다. 현재 프로필은 직접 작성한 임시 SVG입니다.
 
 ## 실행과 확인
@@ -24,6 +24,7 @@
 4. 브라우저에서 여섯 영역과 프로필 대체 이미지가 보이는지 확인합니다.
 5. 내비게이션과 Hero의 링크를 눌러 주소의 `#` 뒤 값과 이동한 영역이 일치하는지 확인합니다. CSS로 부드럽게 이동합니다. 모바일에서는 먼저 메뉴 버튼으로 내비게이션을 엽니다.
 6. 개발자 도구의 Network에서 `style.css`, `main.js`, `profile-placeholder.svg`가 정상적으로 로드되는지 확인합니다.
+7. 300px 이상 내려가면 오른쪽 아래에 나타나는 ‘맨 위로’ 버튼을 누릅니다. 페이지 맨 위로 이동하고, 300px 미만으로 올라오면 버튼이 숨겨지는지 확인합니다. 이 기능은 JavaScript를 사용합니다.
 
 Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.server 8000 --directory src`를 실행한 뒤 `http://localhost:8000`에 접속할 수 있습니다. 종료는 `Ctrl+C`입니다.
 
@@ -39,6 +40,10 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - Projects는 현재 저장소를 소개하는 정적 카드입니다. API 결과가 아닙니다. Grid가 화면 폭과 카드 수에 따라 열 수를 정합니다. 현재 카드 하나는 전체 폭을 사용합니다.
 - Contact는 이름·이메일·메시지와 연결된 label을 갖춘 구조만 준비했습니다. 검증과 제출 동작을 구현할 때까지 입력과 제출을 비활성화했습니다.
 - 자기소개 문구와 임시 프로필 이미지는 추후 실제 소개 내용으로 보완합니다.
+
+## 스크롤 기준값
+
+맨 위로 버튼은 `window.scrollY >= 300`일 때 표시하고 300px 미만이면 숨깁니다. 클릭하면 `window.scrollTo({ top: 0, behavior: 'smooth' })`로 상단으로 이동합니다. [조건 판단과 실행 흐름](docs/learning/011-scroll-event.md)
 
 ## 검증 상태
 
@@ -59,6 +64,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 부드러운 스크롤의 중간 위치와 앵커 목적지 도착을 검증했습니다. 모바일 메뉴에서의 이동과 동작 줄이기 분기 제거 후의 동작도 확인했습니다. [검증 목적과 결과](docs/learning/010-smooth-scrolling.md#5-확인-방법과-결과)
 
+- 1280×720과 375×720에서 맨 위로 버튼의 299·300·301px 경계, 상단 이동과 다시 숨김, 앵커 직접 접속·새로고침 시 표시를 검증했습니다. [검증 목적·결과와 표시 화면](docs/learning/011-scroll-event.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -73,3 +80,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [미디어 쿼리로 화면 폭에 맞게 배치 바꾸기](docs/learning/008-media-queries.md): 모바일을 기본으로 두고 768px·1024px에서 내비게이션 스타일을 추가합니다.
 - [클릭 이벤트로 모바일 메뉴 열고 닫기](docs/learning/009-menu-click-event.md): addEventListener와 classList.toggle로 사용자 조작을 화면 변화에 연결합니다.
 - [CSS로 앵커 이동을 부드럽게 만들기](docs/learning/010-smooth-scrolling.md): scroll-behavior로 이동 방식을 정합니다. 동작 줄이기의 의미와 도입 배경, 과제 범위에 따라 제외한 이유도 정리했습니다.
+- [스크롤 이벤트로 맨 위로 버튼 표시하기](docs/learning/011-scroll-event.md): scroll 이벤트에서 scrollY를 읽고 hidden을 갱신하며, 버튼 클릭을 상단 이동으로 연결합니다.
