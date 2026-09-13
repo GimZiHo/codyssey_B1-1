@@ -16,3 +16,4 @@
 | 010 | 부드러운 스크롤 | scroll-behavior로 앵커 이동 방식 지정 | [CSS로 앵커 이동을 부드럽게 만들기](010-smooth-scrolling.md) |
 | 011 | 스크롤 이벤트 | 300px 기준으로 맨 위로 버튼 표시와 상단 이동 | [스크롤 이벤트로 맨 위로 버튼 표시하기](011-scroll-event.md) |
 | 012 | 조건에 따른 클래스 적용 | 60px 기준으로 내비게이션 배경색 변경 | [조건에 따라 클래스를 적용해 내비게이션 배경 바꾸기](012-conditional-class-toggle.md) |
+| 013 | localStorage | 테마 전환과 선택 저장·새로고침 복원 | [localStorage로 테마 선택 저장하고 복원하기](013-local-storage-theme.md) |

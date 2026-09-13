@@ -68,6 +68,16 @@ nav ul {
   cursor: pointer;
 }
 
+#theme-toggle {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: 1px solid currentColor;
+  cursor: pointer;
+}
+
 #scroll-top {
   position: fixed;
   right: var(--space-page);
