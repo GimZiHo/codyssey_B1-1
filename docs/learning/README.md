@@ -18,3 +18,4 @@
 | 012 | 조건에 따른 클래스 적용 | 60px 기준으로 내비게이션 배경색 변경 | [조건에 따라 클래스를 적용해 내비게이션 배경 바꾸기](012-conditional-class-toggle.md) |
 | 013 | localStorage | 테마 전환과 선택 저장·새로고침 복원 | [localStorage로 테마 선택 저장하고 복원하기](013-local-storage-theme.md) |
 | 014 | Intersection Observer | 화면 진입에 따른 섹션 등장 애니메이션 | [Intersection Observer로 섹션 등장 효과 만들기](014-intersection-observer.md) |
+| 015 | hover·transition·box-shadow | 버튼·Hero CTA의 hover 전환과 카드 그림자 | [hover와 transition, box-shadow로 버튼과 카드에 반응 만들기](015-hover-transition-shadow.md) |

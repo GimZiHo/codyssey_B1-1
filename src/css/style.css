@@ -4,6 +4,8 @@
   --color-text: #1f2937;
   --color-link: #1d4ed8;
   --color-navigation-scrolled: #e2e8f0;
+  /* 카드 그림자 색. 테마마다 밝기가 달라야 보이므로 변수로 분리한다. */
+  --color-card-shadow: rgba(15, 23, 42, 0.25);
   --font-family: sans-serif;
   --line-height: 1.6;
   --space-page: 1rem;
@@ -17,6 +19,7 @@
   --color-text: #f3f4f6;
   --color-link: #93c5fd;
   --color-navigation-scrolled: #1f2937;
+  --color-card-shadow: rgba(0, 0, 0, 0.6);
 }
 
 body {
@@ -58,6 +61,11 @@ nav ul {
   list-style: none;
 }
 
+/* 전환은 기본 상태에 선언한다. hover로 들어갈 때와 벗어나 돌아올 때 모두 0.2초가 적용된다. */
+button {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
 #menu-toggle {
   align-self: flex-start;
   padding: 0.5rem 1rem;
@@ -90,6 +98,14 @@ nav ul {
   cursor: pointer;
 }
 
+/* 포인터가 올라간 버튼의 색을 반전한다. :enabled로 조작 가능한 버튼만 골라 비활성 버튼은 제외한다. */
+#menu-toggle:enabled:hover,
+#theme-toggle:enabled:hover,
+#scroll-top:enabled:hover {
+  color: var(--color-background);
+  background-color: var(--color-text);
+}
+
 nav.menu-ready ul {
   display: none;
 }
@@ -115,16 +131,36 @@ main section.reveal.visible {
   transform: translateY(0);
 }
 
+/* Hero의 CTA 링크. transform은 인라인 요소에 적용되지 않아 inline-block으로 바꾼다. */
+.cta {
+  display: inline-block;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  color: var(--color-text);
+  transform: translateY(-2px);
+}
+
 #project-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
   gap: var(--space-page);
 }
 
+/* 카드의 평소 그림자. 아래로 1px 내려간 위치에 3px 번짐을 둔다. */
 #project-list article {
   padding: var(--space-page);
   border: 1px solid currentColor;
   overflow-wrap: anywhere;
+  box-shadow: 0 1px 3px var(--color-card-shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 카드를 4px 띄우고 그림자를 더 멀고 크게 만들어 떠오르는 느낌을 준다. */
+#project-list article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px var(--color-card-shadow);
 }
 
 label {
