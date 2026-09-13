@@ -84,7 +84,7 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 1280×720·375×720에서 테마 전환과 양방향 새로고침 복원, 저장값·버튼 문구·배경색 일치를 확인했습니다. [검증 절차와 화면](docs/learning/013-local-storage-theme.md#5-확인-방법과-결과)
 
-- 1280×720·375×720에서 Observer의 19% 대기·21% 등장, 전환 중간 프레임, 재진입 유지, 직접 앵커 접속과 JavaScript 비활성화를 검증했습니다. [실제 결과와 비교 화면](docs/learning/014-intersection-observer.md#5-확인-방법과-결과)
+- 1280×720·375×720에서 Observer의 19% 대기·21% 등장, 전환 중간 프레임, 재진입 유지, 직접 앵커 접속과 JavaScript 비활성화를 검증했습니다. [검증 절차와 실제 결과](docs/learning/014-intersection-observer.md#5-확인-방법과-결과)
 
 ## 학습 기록
 

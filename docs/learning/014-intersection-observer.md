@@ -152,14 +152,6 @@ Ubuntu 24.04, Node.js 24.18.1, Playwright 1.63.0, Chromium 153.0.8010.12에서 �
 
 검증 스크립트는 일회성 `/tmp/codyssey-check-observer.cjs`를 사용했다. 기존 공통 Playwright 환경의 브라우저·라이브러리·글꼴 경로를 지정하고 `node /tmp/codyssey-check-observer.cjs`로 실행했다. 스크립트는 임시 서버를 열고 검증 후 서버와 브라우저를 종료한다. 다시 직접 확인할 때는 위 표의 절차를 사용한다.
 
-![교차 비율 약 19%에서 아직 보이지 않는 문의 섹션](../images/screenshots/014-intersection-observer/before-threshold.png)
-
-375×720 화면에서 문의 섹션이 화면 하단에 걸쳐 있지만 대기 상태라 보이지 않는다.
-
-![교차 비율 약 21%를 지나 표시된 문의 섹션](../images/screenshots/014-intersection-observer/after-threshold.png)
-
-조금 더 스크롤하고 0.6초 전환이 끝나면 문의 제목과 안내 문구가 보인다.
-
 현재는 섹션 전체를 관찰하므로, 나중에 API 카드가 늘어 섹션이 아주 길어지면 화면에 들어오는 면적이 20%에 도달하지 못할 수 있다. API 단계에서 실제 카드 수와 섹션 높이를 기준으로 관찰 대상을 다시 확인한다.
 
 ## 6. 참고자료
