@@ -2,7 +2,7 @@
 
 순수 HTML, CSS, JavaScript로 나를 소개하는 반응형 포트폴리오 웹사이트를 만드는 학습 프로젝트입니다. DOM 조작, 이벤트, 비동기 요청을 통해 사용자 입력이 상태와 화면 변화로 이어지는 과정을 학습합니다.
 
-현재는 여섯 섹션의 HTML 구조, CSS 변수와 다크 모드 색상, Flexbox·Grid 배치, 768px·1024px 미디어 쿼리, 모바일 메뉴, 부드러운 섹션 이동, 맨 위로 버튼과 스크롤에 따른 내비게이션 배경색 변경, 테마 전환과 선택 저장·복원을 구현했습니다. 나머지 스타일·인터랙션, 폼 검증, API 연동과 배포는 이후 구현합니다.
+현재는 여섯 섹션의 HTML 구조, CSS 변수와 다크 모드 색상, Flexbox·Grid 배치, 768px·1024px 미디어 쿼리, 모바일 메뉴, 부드러운 섹션 이동, 맨 위로 버튼과 스크롤에 따른 내비게이션 배경색 변경, 테마 전환과 선택 저장·복원, Intersection Observer를 이용한 섹션 등장 애니메이션을 구현했습니다. 나머지 스타일·인터랙션, 폼 검증, API 연동과 배포는 이후 구현합니다.
 
 - [과제 요구사항 원문](docs/assignment-requirements.pdf)
 - [프로젝트 작업 지침](AGENTS.md)
@@ -14,7 +14,7 @@
 - `docs/learning/`: 실제 코드에 적용한 개념과 검증 결과를 기록합니다.
 - `src/index.html`: Hero, About, Skills, Projects, Contact, Footer와 섹션 이동 링크를 정의합니다.
 - `src/css/`: 스타일시트를 보관합니다. 색상·글꼴·간격을 CSS 변수로 관리하며 최소 스타일을 적용했습니다.
-- `src/js/`: JavaScript를 보관합니다. 모바일 메뉴의 클릭과 스크롤 위치에 따른 맨 위로 버튼·내비게이션 배경 변경, 테마 선택 저장·복원을 연결합니다.
+- `src/js/`: JavaScript를 보관합니다. 모바일 메뉴의 클릭과 스크롤 위치에 따른 맨 위로 버튼·내비게이션 배경 변경, 테마 선택 저장·복원, 섹션 등장 애니메이션의 관찰을 연결합니다.
 - `src/images/`: 웹사이트에서 사용하는 이미지를 보관합니다. 현재 프로필은 직접 작성한 임시 SVG입니다.
 
 ## 실행과 확인
@@ -30,6 +30,8 @@
 
 9. 테마 버튼을 누르고 새로고침해 선택이 유지되는지 확인합니다. 다시 누르면 라이트로 돌아가며 이 선택도 저장됩니다.
 
+10. 천천히 아래로 스크롤해 각 섹션이 아래에서 떠오르며 나타나는지 확인합니다. 다시 위로 올라갔다 내려와도 표시 상태가 유지됩니다. [기준과 확인 항목](docs/learning/014-intersection-observer.md#5-확인-방법과-결과)
+
 Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.server 8000 --directory src`를 실행한 뒤 `http://localhost:8000`에 접속할 수 있습니다. 종료는 `Ctrl+C`입니다.
 
 ## 현재 구현 범위와 학습 포인트
@@ -37,6 +39,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - 내비게이션은 모바일에서 세로로, 768px 이상에서 가로로 배치합니다. 1024px 이상에서는 메뉴 간격을 넓힙니다. 모바일에서는 햄버거 버튼으로 메뉴를 열고 닫습니다.
 
 - `html`의 `data-theme="dark"` 속성으로 본문 배경·글자·링크 색상을 전환합니다. 테마 버튼으로 전환하고 `localStorage`의 `theme` 키에 선택을 저장해 새로고침 후 복원합니다. 기본값은 라이트입니다. 저장소 사용이 허용된 HTTP 환경을 기준으로 하며 저장 실패 예외 처리는 없습니다. 입력 컨트롤·임시 SVG의 테마 적용은 아직 구현하지 않았습니다.
+
+- `main`의 다섯 섹션은 화면에 20% 이상 들어올 때 `opacity`와 `transform: translateY()`가 0.6초 `transition`으로 변하며 한 번씩 나타납니다. 표시된 뒤에는 관찰을 해제하므로 다시 스크롤해도 사라지지 않습니다. 등장 전 상태를 만드는 클래스는 JavaScript에서만 붙이기 때문에 JavaScript가 비활성화된 환경에서는 본문이 처음부터 그대로 보입니다.
 
 - `header`는 상단 소개·메뉴, `nav`는 이동 링크, `main`은 본문, `section`은 주제별 영역, `article`은 독립적으로 읽을 수 있는 프로젝트, `footer`는 저작권·소셜 링크를 나타냅니다.
 - `href="#about"`은 `id="about"`인 영역으로 이동합니다. `:root`의 `scroll-behavior: smooth`가 이동을 부드럽게 합니다. 앵커 이동을 위한 JavaScript는 필요하지 않습니다. 과제 범위에 맞춰 동작 줄이기 선호에 따라 이동 방식을 바꾸는 처리는 구현 범위에서 제외했습니다.
@@ -49,10 +53,11 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 | 기능 | 기준과 동작 |
 | --- | --- |
-| 내비게이션 배경 | 60px 이상이면 `scrolled` 클래스로 배경 변경, 60px 미만이면 기본 배경으로 복원 |
-| 맨 위로 버튼 | 300px 이상이면 표시, 300px 미만이면 숨김 |
+| 내비게이션 배경 | 스크롤 60px 이상이면 `scrolled` 클래스로 배경 변경, 60px 미만이면 기본 배경으로 복원 |
+| 맨 위로 버튼 | 스크롤 300px 이상이면 표시, 300px 미만이면 숨김 |
+| 섹션 등장 애니메이션 | Intersection Observer의 `threshold`는 **0.2**입니다. 섹션이 화면에 20% 이상 들어오면 `visible` 클래스로 표시하고 관찰을 해제해 한 번만 등장합니다 |
 
-맨 위로 버튼을 클릭하면 `window.scrollTo({ top: 0, behavior: 'smooth' })`로 상단으로 이동합니다. [버튼의 실행 흐름](docs/learning/011-scroll-event.md), [내비게이션 클래스 조건](docs/learning/012-conditional-class-toggle.md)
+맨 위로 버튼을 클릭하면 `window.scrollTo({ top: 0, behavior: 'smooth' })`로 상단으로 이동합니다. [버튼의 실행 흐름](docs/learning/011-scroll-event.md), [내비게이션 클래스 조건](docs/learning/012-conditional-class-toggle.md), [섹션 등장 효과](docs/learning/014-intersection-observer.md)
 
 ## 검증 상태
 
@@ -79,6 +84,8 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 
 - 1280×720·375×720에서 테마 전환과 양방향 새로고침 복원, 저장값·버튼 문구·배경색 일치를 확인했습니다. [검증 절차와 화면](docs/learning/013-local-storage-theme.md#5-확인-방법과-결과)
 
+- 1280×720·375×720에서 Observer의 19% 대기·21% 등장, 전환 중간 프레임, 재진입 유지, 직접 앵커 접속과 JavaScript 비활성화를 검증했습니다. [실제 결과와 비교 화면](docs/learning/014-intersection-observer.md#5-확인-방법과-결과)
+
 ## 학습 기록
 
 [학습 목록](docs/learning/README.md)에서 개념별 기록을 확인할 수 있습니다.
@@ -96,3 +103,4 @@ Live Server를 사용할 수 없다면 저장소 루트에서 `python3 -m http.s
 - [스크롤 이벤트로 맨 위로 버튼 표시하기](docs/learning/011-scroll-event.md): scroll 이벤트에서 scrollY를 읽고 hidden을 갱신하며, 버튼 클릭을 상단 이동으로 연결합니다.
 - [조건에 따라 클래스를 적용해 내비게이션 배경 바꾸기](docs/learning/012-conditional-class-toggle.md): classList.toggle의 조건 인자로 클래스를 적용하고 CSS 배경색을 연결합니다. 구현은 Claude Code에 위임하고 검토·검증·학습 기록은 Codex가 수행했습니다.
 - [localStorage로 테마 선택 저장하고 복원하기](docs/learning/013-local-storage-theme.md): 테마 버튼의 클릭을 속성 변경·저장·초기 복원으로 연결합니다. 구현은 Claude Code에 위임하고 검토·검증·학습 기록은 Codex가 수행했습니다.
+- [Intersection Observer로 섹션 등장 효과 만들기](docs/learning/014-intersection-observer.md): 교차 비율이 0.2를 넘을 때 클래스를 붙이고 관찰을 해제해 섹션을 한 번씩 등장시킵니다. 최초 알림이 임계값과 무관하게 오는 점과 대기 클래스를 JavaScript에서만 붙이는 이유도 정리했습니다.

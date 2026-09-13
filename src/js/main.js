@@ -58,3 +58,21 @@ const updateNavigationBackground = () => {
 window.addEventListener('scroll', updateNavigationBackground);
 
 updateNavigationBackground();
+
+const sections = document.querySelectorAll('main section');
+
+// 20% 이상 보이는 섹션에 표시 클래스를 붙이고 감시를 끝내 한 번만 등장시킨다.
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+      entry.target.classList.add('visible');
+      sectionObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+// 대기 클래스를 JavaScript에서만 붙여 스크립트가 없으면 본문이 그대로 보이게 한다.
+sections.forEach((section) => {
+  section.classList.add('reveal');
+  sectionObserver.observe(section);
+});

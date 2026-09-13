@@ -6,13 +6,13 @@
 
 작업을 시작할 때 이 블록만 읽으면 어디까지 했는지 알 수 있게 유지한다.
 
-- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원
+- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원, Intersection Observer 등장 효과(20%)
 - **남은 기초 항목**: Live Server 환경 확인, 실제 자기소개·프로필, 버튼·카드 hover·transition·box-shadow
 - **진행 중**: 없음
-- **다음 작업 단위**: Intersection Observer와 이에 필요한 등장 효과(3절). 버튼·카드 hover·그림자는 별도 학습 단위로 진행한다.
+- **다음 작업 단위**: 버튼·카드 hover·transition·box-shadow(2절)
 - **그 다음**: 폼 검증(4장) → GitHub API 연동(5장) → 최종 검증·배포·README(6장)
 - **보류된 결정**: 없음
-- **최신 학습 기록**: [localStorage 테마 저장·복원](learning/013-local-storage-theme.md)
+- **최신 학습 기록**: [Intersection Observer 섹션 등장 효과](learning/014-intersection-observer.md)
 - **마지막 갱신**: 2026-09-13
 
 ## 1. 개발 환경과 HTML 구조 — PDF 2~3쪽
@@ -49,8 +49,8 @@
 - [x] 스크롤 300px 이상에서 맨 위로 이동하는 버튼을 표시하고 클릭 시 맨 위로 이동한다.
 - [x] 스크롤 60px 이상에서 내비게이션 배경색을 변경한다.
 - [x] 다크 모드를 토글하고 로컬스토리지에 저장해 새로고침 후에도 유지한다.
-- [ ] Intersection Observer로 스크롤 애니메이션을 구현한다. threshold는 0.2 이상을 권장한다.
-- [ ] 스크롤 기준값과 Observer threshold를 README에 명시한다. 과제에서 이 값들은 변경을 허용한다.
+- [x] Intersection Observer로 스크롤 애니메이션을 구현한다. threshold는 0.2 이상을 권장한다.
+- [x] 스크롤 기준값과 Observer threshold를 README에 명시한다. 과제에서 이 값들은 변경을 허용한다.
 
 ## 4. 문의 폼 — PDF 5쪽
 

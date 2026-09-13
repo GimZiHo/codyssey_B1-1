@@ -102,6 +102,19 @@ section {
   margin-block: var(--space-section);
 }
 
+/* 등장 전 대기 상태. JavaScript가 reveal을 붙였을 때만 적용된다. */
+main section.reveal {
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+/* 화면에 20% 이상 들어온 뒤의 표시 상태. */
+main section.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 #project-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
