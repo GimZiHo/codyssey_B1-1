@@ -3,6 +3,7 @@
   --color-background: #ffffff;
   --color-text: #1f2937;
   --color-link: #1d4ed8;
+  --color-navigation-scrolled: #e2e8f0;
   --font-family: sans-serif;
   --line-height: 1.6;
   --space-page: 1rem;
@@ -15,6 +16,7 @@
   --color-background: #111827;
   --color-text: #f3f4f6;
   --color-link: #93c5fd;
+  --color-navigation-scrolled: #1f2937;
 }
 
 body {
@@ -39,6 +41,12 @@ nav {
   align-items: stretch;
   flex-wrap: wrap;
   gap: var(--space-page);
+  background-color: var(--color-background);
+}
+
+/* 스크롤 60px 이상일 때 nav 배경만 바꾼다. */
+nav.scrolled {
+  background-color: var(--color-navigation-scrolled);
 }
 
 nav ul {

@@ -25,3 +25,12 @@ scrollTopButton.addEventListener('click', () => {
 
 // 처음 실행할 때도 현재 스크롤 위치에 맞게 표시 여부를 정한다.
 updateScrollTopButton();
+
+// force 인자로 60px 이상이면 유지, 미만이면 제거한다.
+const updateNavigationBackground = () => {
+  navigation.classList.toggle('scrolled', window.scrollY >= 60);
+};
+
+window.addEventListener('scroll', updateNavigationBackground);
+
+updateNavigationBackground();
