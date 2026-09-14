@@ -65,24 +65,31 @@
 
       <section id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title">문의</h2>
-        <p id="contact-notice">문의 폼은 준비 중이며, 현재 입력 내용은 전송되지 않습니다.</p>
-        <form aria-describedby="contact-notice">
-          <!-- 검증과 제출 동작을 구현할 때 입력을 활성화한다. -->
-          <fieldset disabled>
+        <p id="contact-notice">입력한 내용은 검증만 하며, 아직 실제로 전송되지 않습니다.</p>
+        <!-- novalidate로 브라우저 기본 검증 UI를 끄고 submit 이벤트에서 직접 검사한다. -->
+        <form id="contact-form" aria-describedby="contact-notice" novalidate>
+          <fieldset>
             <legend>문의 내용</legend>
             <p>
               <label for="contact-name">이름 (필수)</label>
-              <input id="contact-name" name="name" type="text" autocomplete="name" required>
+              <input id="contact-name" name="name" type="text" autocomplete="name" required
+                aria-describedby="contact-name-error">
+              <!-- 오류 문구는 비어 있다가 검증 결과에 따라 채워진다. -->
+              <span class="field-error" id="contact-name-error"></span>
             </p>
             <p>
               <label for="contact-email">이메일 (필수)</label>
-              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+              <input id="contact-email" name="email" type="email" autocomplete="email" required
+                aria-describedby="contact-email-error">
+              <span class="field-error" id="contact-email-error"></span>
             </p>
             <p>
               <label for="contact-message">메시지 (필수)</label>
-              <textarea id="contact-message" name="message" rows="5" required></textarea>
+              <textarea id="contact-message" name="message" rows="5" required
+                aria-describedby="contact-message-error"></textarea>
+              <span class="field-error" id="contact-message-error"></span>
             </p>
-            <button type="submit">문의하기 (준비 중)</button>
+            <button type="submit">문의하기</button>
           </fieldset>
         </form>
       </section>

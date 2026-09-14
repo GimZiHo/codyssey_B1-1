@@ -19,3 +19,4 @@
 | 013 | localStorage | 테마 전환과 선택 저장·새로고침 복원 | [localStorage로 테마 선택 저장하고 복원하기](013-local-storage-theme.md) |
 | 014 | Intersection Observer | 화면 진입에 따른 섹션 등장 애니메이션 | [Intersection Observer로 섹션 등장 효과 만들기](014-intersection-observer.md) |
 | 015 | hover·transition·box-shadow | 버튼·Hero CTA의 hover 전환과 카드 그림자 | [hover와 transition, box-shadow로 버튼과 카드에 반응 만들기](015-hover-transition-shadow.md) |
+| 016 | submit·input 이벤트와 폼 검증 | 문의 폼 필수값·이메일 형식 검증과 필드별 오류 표시 | [submit·input 이벤트로 문의 폼 검증하기](016-form-validation.md) |

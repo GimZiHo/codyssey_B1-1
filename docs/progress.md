@@ -6,14 +6,14 @@
 
 작업을 시작할 때 이 블록만 읽으면 어디까지 했는지 알 수 있게 유지한다.
 
-- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원, Intersection Observer 등장 효과(20%), 버튼·CTA·카드 hover·transition·box-shadow
+- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원, Intersection Observer 등장 효과(20%), 버튼·CTA·카드 hover·transition·box-shadow, 문의 폼 입력 활성화와 필수값·이메일 형식 검증(오류 표시, submit 기본 동작 차단, input 수정 시 오류 갱신)
 - **남은 기초 항목**: Live Server 환경 확인, 실제 자기소개·프로필
 - **진행 중**: 없음
-- **다음 작업 단위**: 폼 검증(4장) — 필수값·이메일 형식 검증과 오류 표시부터 작은 단위로 진행
-- **그 다음**: 폼 제출 성공 메시지 → GitHub API 연동(5장) → 최종 검증·배포·README(6장)
+- **다음 작업 단위**: 폼 제출 성공 메시지(4장) — 검증을 통과했을 때의 화면 변화
+- **그 다음**: GitHub API 연동(5장) → 최종 검증·배포·README(6장)
 - **보류된 결정**: 없음
-- **최신 학습 기록**: [hover·transition·box-shadow](learning/015-hover-transition-shadow.md)
-- **마지막 갱신**: 2026-09-13
+- **최신 학습 기록**: [submit·input 이벤트와 폼 검증](learning/016-form-validation.md)
+- **마지막 갱신**: 2026-09-14
 
 ## 1. 개발 환경과 HTML 구조 — PDF 2~3쪽
 
@@ -43,7 +43,7 @@
 
 - [ ] `const`, `let`을 사용하고 `addEventListener`로 이벤트를 연결한다.
 - [ ] `querySelector`, `querySelectorAll`, `textContent`, `innerHTML`, `classList.add/remove/toggle`을 활용한다.
-- [ ] `click`, `submit`, `scroll`, `input` 이벤트를 다루고 필요한 곳에 `event.preventDefault()`를 사용한다.
+- [x] `click`, `submit`, `scroll`, `input` 이벤트를 다루고 필요한 곳에 `event.preventDefault()`를 사용한다.
 - [x] 햄버거 버튼을 누를 때 `classList.toggle('active')`로 메뉴를 열고 닫는다.
 - [x] 내비게이션 링크를 누르면 해당 섹션으로 부드럽게 이동한다.
 - [x] 스크롤 300px 이상에서 맨 위로 이동하는 버튼을 표시하고 클릭 시 맨 위로 이동한다.
@@ -54,9 +54,9 @@
 
 ## 4. 문의 폼 — PDF 5쪽
 
-- [ ] 이름, 이메일, 메시지를 입력받는다.
-- [ ] 필수값과 이메일 형식을 검증하고 오류를 해당 필드 근처에 표시한다.
-- [ ] 제출 시 기본 동작을 막고 검증 통과 시 성공 메시지를 표시한다.
+- [x] 이름, 이메일, 메시지를 입력받는다.
+- [x] 필수값과 이메일 형식을 검증하고 오류를 해당 필드 근처에 표시한다.
+- [ ] 제출 시 기본 동작을 막고 검증 통과 시 성공 메시지를 표시한다. 기본 동작 차단은 완료했고 성공 메시지가 남았다.
 - 실제 이메일 전송은 선택 과제다. 전송을 구현하지 않았다면 실제로 전송했다고 안내하지 않는다.
 
 ## 5. ES6+, GitHub API와 상태 관리 — PDF 5~6쪽, 8쪽
