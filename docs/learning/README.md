@@ -21,3 +21,4 @@
 | 015 | hover·transition·box-shadow | 버튼·Hero CTA의 hover 전환과 카드 그림자 | [hover와 transition, box-shadow로 버튼과 카드에 반응 만들기](015-hover-transition-shadow.md) |
 | 016 | submit·input 이벤트와 폼 검증 | 문의 폼 필수값·이메일 형식 검증과 필드별 오류 표시 | [submit·input 이벤트로 문의 폼 검증하기](016-form-validation.md) |
 | 017 | 폼 단위 결과 상태와 라이브 리전 | 검증 통과 시 성공 안내 표시와 입력·실패 제출 시 해제 | [폼 제출 결과를 성공 안내로 표시하고 해제하기](017-form-success-state.md) |
+| 018 | fetch·async/await와 요청 상태 렌더링 | GitHub 저장소 목록의 로딩·성공·빈 목록·실패와 재시도 | [fetch와 async/await로 GitHub 저장소를 불러와 상태별로 화면 그리기](018-async-fetch-states.md) |

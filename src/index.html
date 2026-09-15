@@ -53,14 +53,12 @@
 
       <section id="projects" aria-labelledby="projects-title">
         <h2 id="projects-title">프로젝트</h2>
-        <!-- API 연동 단계에서 이 영역을 실제 저장소 카드 목록으로 바꾼다. -->
-        <div id="project-list">
-          <article>
-            <h3>나를 소개하는 웹페이지</h3>
-            <p>현재 만들고 있는 프로젝트입니다. GitHub 저장소 목록 연동은 준비 중입니다.</p>
-            <a href="https://github.com/GimZiHo/codyssey_B1-1">GitHub 저장소 보기</a>
-          </article>
-        </div>
+        <!-- 로딩·오류·빈 목록 문구가 번갈아 들어가는 자리. 라이브 리전을 먼저 등록해 두려고 빈 채로 둔다. -->
+        <p id="project-status" role="status"></p>
+        <!-- 오류 상태에서만 보인다. 표시 여부는 JavaScript가 hidden으로 정한다. -->
+        <button id="project-retry" type="button" hidden>다시 불러오기</button>
+        <!-- 성공 상태에서 GitHub API로 받은 저장소 카드가 채워진다. -->
+        <div id="project-list"></div>
       </section>
 
       <section id="contact" aria-labelledby="contact-title">

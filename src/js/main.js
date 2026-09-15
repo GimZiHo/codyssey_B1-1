@@ -157,3 +157,136 @@ contactFields.forEach((field) => {
     }
   });
 });
+
+const projectStatus = document.querySelector('#project-status');
+const projectList = document.querySelector('#project-list');
+const projectRetryButton = document.querySelector('#project-retry');
+
+const githubUsername = 'GimZiHo';
+const repositoriesUrl = `https://api.github.com/users/${githubUsername}/repos`;
+
+// API가 준 문자열을 innerHTML에 그대로 넣으면 태그로 해석되므로 HTML에서 뜻을 가지는 문자를 먼저 바꾼다.
+const escapeHtml = (text) => text
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;');
+
+// 주소도 문자열로 붙으므로 javascript: 같은 스킴이 끼어들지 못하게 GitHub 주소만 링크로 만든다.
+const isGithubUrl = (url) => typeof url === 'string' && url.startsWith('https://github.com/');
+
+// 저장소 객체 하나를 카드 HTML 문자열로 바꾼다. 필요한 값만 구조분해로 꺼내고 긴 이름은 바꿔 받는다.
+const createProjectCard = ({ name, description, language, html_url: htmlUrl }) => {
+  // 설명과 언어는 값이 없으면 null로 오므로 대체 문구를 정해 둔다.
+  const cardName = escapeHtml(name);
+  const cardDescription = escapeHtml(description ?? '저장소 설명이 아직 없습니다.');
+  const cardLanguage = escapeHtml(language ?? '미지정');
+  const cardLink = isGithubUrl(htmlUrl)
+    ? `<a href="${escapeHtml(htmlUrl)}">GitHub에서 저장소 보기</a>`
+    : '';
+
+  return `
+    <article>
+      <h3>${cardName}</h3>
+      <p>${cardDescription}</p>
+      <p>주요 언어: ${cardLanguage}</p>
+      ${cardLink}
+    </article>
+  `;
+};
+
+// 화면을 그리는 유일한 지점. 지금 상태만 보고 문구·재시도 버튼·카드 목록을 한 번에 맞춘다.
+const renderProjects = ({ status, repositories, errorMessage }) => {
+  // 실패일 때만 오류 색 클래스를 붙이고, 나머지 상태에서는 지워 이전 실패의 흔적을 남기지 않는다.
+  if (status === 'error') {
+    projectStatus.classList.add('error');
+  } else {
+    projectStatus.classList.remove('error');
+  }
+
+  projectRetryButton.hidden = status !== 'error';
+  // 이전 상태에서 그린 카드는 먼저 지운다.
+  projectList.innerHTML = '';
+
+  if (status === 'loading') {
+    projectStatus.textContent = '프로젝트를 불러오는 중입니다...';
+    return;
+  }
+
+  if (status === 'error') {
+    projectStatus.textContent = errorMessage;
+    return;
+  }
+
+  if (repositories.length === 0) {
+    projectStatus.textContent = '표시할 프로젝트가 없습니다.';
+    return;
+  }
+
+  projectStatus.textContent = '';
+  projectList.innerHTML = repositories.map(createProjectCard).join('');
+};
+
+// 요청 상태를 담는 하나의 값. 아직 요청하지 않은 상태가 idle이다.
+let projectState = { status: 'idle', repositories: [], errorMessage: '' };
+
+// 상태를 바꾸는 유일한 지점. 바꾼 직후에 화면을 다시 그린다.
+const setProjectState = (nextState) => {
+  projectState = nextState;
+  renderProjects(projectState);
+};
+
+// fetch는 403·404 같은 오류 응답도 거부하지 않으므로 상태 코드를 직접 보고 안내를 만든다.
+const describeResponseError = (status) => {
+  // 403은 요청 한도 초과 말고 접근 제한에서도 오므로 한쪽으로 단정하지 않고 두 원인을 함께 안내한다.
+  if (status === 403) {
+    return 'GitHub이 접근을 거부했습니다. 접근이 제한되었거나 요청 한도를 넘었을 수 있습니다. 로그인 없이 보내는 요청은 시간당 60회까지입니다.';
+  }
+
+  // 429는 요청이 너무 많을 때만 오는 코드라 한도 안내로 단정할 수 있다.
+  if (status === 429) {
+    return 'GitHub API 요청 한도를 넘었습니다. 로그인 없이 보내는 요청은 시간당 60회까지입니다.';
+  }
+
+  if (status === 404) {
+    return `GitHub 사용자 ${githubUsername}의 저장소를 찾을 수 없습니다.`;
+  }
+
+  return `GitHub이 ${status} 응답을 보냈습니다.`;
+};
+
+const loadProjects = async () => {
+  // 요청 중이면 상태가 loading이다. 재시도를 연달아 눌러도 요청은 하나만 나간다.
+  if (projectState.status === 'loading') {
+    return;
+  }
+
+  setProjectState({ status: 'loading', repositories: [], errorMessage: '' });
+
+  try {
+    // await가 응답을 기다리는 동안 화면은 로딩 상태 그대로 남는다.
+    const response = await fetch(repositoriesUrl);
+
+    if (!response.ok) {
+      throw new Error(describeResponseError(response.status));
+    }
+
+    const repositories = await response.json();
+
+    setProjectState({ status: 'success', repositories, errorMessage: '' });
+  } catch (error) {
+    // 연결 자체가 실패하면 fetch가 TypeError로 거부하므로 안내를 따로 만든다.
+    const reason = error instanceof TypeError ? '네트워크에 연결하지 못했습니다.' : error.message;
+
+    setProjectState({
+      status: 'error',
+      repositories: [],
+      errorMessage: `프로젝트를 불러올 수 없습니다. ${reason}`,
+    });
+  }
+};
+
+projectRetryButton.addEventListener('click', loadProjects);
+
+// 페이지를 열면 바로 한 번 요청한다.
+loadProjects();
