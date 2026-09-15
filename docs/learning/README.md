@@ -20,3 +20,4 @@
 | 014 | Intersection Observer | 화면 진입에 따른 섹션 등장 애니메이션 | [Intersection Observer로 섹션 등장 효과 만들기](014-intersection-observer.md) |
 | 015 | hover·transition·box-shadow | 버튼·Hero CTA의 hover 전환과 카드 그림자 | [hover와 transition, box-shadow로 버튼과 카드에 반응 만들기](015-hover-transition-shadow.md) |
 | 016 | submit·input 이벤트와 폼 검증 | 문의 폼 필수값·이메일 형식 검증과 필드별 오류 표시 | [submit·input 이벤트로 문의 폼 검증하기](016-form-validation.md) |
+| 017 | 폼 단위 결과 상태와 라이브 리전 | 검증 통과 시 성공 안내 표시와 입력·실패 제출 시 해제 | [폼 제출 결과를 성공 안내로 표시하고 해제하기](017-form-success-state.md) |

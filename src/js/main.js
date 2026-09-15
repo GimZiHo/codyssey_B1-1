@@ -78,6 +78,7 @@ sections.forEach((section) => {
 });
 
 const contactForm = document.querySelector('#contact-form');
+const contactSuccess = document.querySelector('#contact-success');
 
 // @ 앞뒤에 공백이 없는 글자가 있고, 도메인에 점이 하나 이상 있는지만 확인한다.
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -108,6 +109,11 @@ const contactFields = [
   },
 ];
 
+// 성공 안내를 켜고 끄는 유일한 지점. 빈 문자열이면 안내가 없는 상태다.
+const renderFormSuccess = (message) => {
+  contactSuccess.textContent = message;
+};
+
 // 검증 결과를 오류 문구와 aria-invalid 속성에 반영한다. 화면 갱신은 여기서만 한다.
 const renderFieldError = (field, message) => {
   field.errorText.textContent = message;
@@ -129,15 +135,23 @@ contactForm.addEventListener('submit', (event) => {
 
   const invalidFields = contactFields.filter((field) => !validateField(field));
 
-  // 통과했을 때의 성공 메시지는 다음 단계에서 구현한다.
   if (invalidFields.length > 0) {
+    // 실패한 제출이므로 이전 제출의 성공 안내는 지운다.
+    renderFormSuccess('');
     invalidFields[0].input.focus();
+    return;
   }
+
+  // 전송 기능이 없으므로 접수·전송이 아니라 검증 통과만 안내한다.
+  renderFormSuccess('입력한 내용을 모두 확인했습니다. 실제 전송 기능은 아직 없어 내용은 전송되지 않았습니다.');
 });
 
 // 오류가 표시된 필드만 입력에 맞춰 다시 검사한다. 처음 작성하는 동안에는 오류를 띄우지 않는다.
 contactFields.forEach((field) => {
   field.input.addEventListener('input', () => {
+    // 입력이 바뀌면 직전 제출의 성공 안내는 더 이상 지금 값에 대한 결과가 아니다.
+    renderFormSuccess('');
+
     if (field.input.getAttribute('aria-invalid') === 'true') {
       validateField(field);
     }

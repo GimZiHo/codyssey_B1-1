@@ -8,6 +8,8 @@
   --color-card-shadow: rgba(15, 23, 42, 0.25);
   /* 폼 검증 오류 색. 배경 대비를 맞추려고 테마별로 나눈다. */
   --color-error: #b91c1c;
+  /* 검증 통과 안내 색. 오류 색과 같은 이유로 테마별로 나눈다. */
+  --color-success: #15803d;
   --font-family: sans-serif;
   --line-height: 1.6;
   --space-page: 1rem;
@@ -23,6 +25,7 @@
   --color-navigation-scrolled: #1f2937;
   --color-card-shadow: rgba(0, 0, 0, 0.6);
   --color-error: #fca5a5;
+  --color-success: #86efac;
 }
 
 body {
@@ -183,6 +186,12 @@ textarea {
   display: block;
   max-width: 30rem;
   color: var(--color-error);
+}
+
+/* 성공 안내도 오류 문구처럼 비어 있으면 줄 높이가 생기지 않는다. */
+#contact-success {
+  max-width: 30rem;
+  color: var(--color-success);
 }
 
 /* 검증 상태는 aria-invalid 속성에 기록하고, 같은 속성을 선택자로 써서 테두리를 바꾼다. */
