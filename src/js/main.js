@@ -61,11 +61,13 @@ updateNavigationBackground();
 
 const sections = document.querySelectorAll('main section');
 
-// 20% 이상 보이는 섹션에 표시 클래스를 붙이고 감시를 끝내 한 번만 등장시킨다.
+// 관찰 대상은 섹션이 아니라 그 제목이다. 제목은 화면보다 작아서 API 카드가 늘어도 높이가 그대로라
+// 20% 기준이 항상 성립한다. 섹션 자체를 관찰하면 목록이 길어질 때 비율이 0.2에 닿지 못한다.
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
-      entry.target.classList.add('visible');
+      // 표시 클래스는 제목이 아니라 그 제목이 속한 섹션에 붙인다.
+      entry.target.closest('section').classList.add('visible');
       sectionObserver.unobserve(entry.target);
     }
   });
@@ -74,7 +76,7 @@ const sectionObserver = new IntersectionObserver((entries) => {
 // 대기 클래스를 JavaScript에서만 붙여 스크립트가 없으면 본문이 그대로 보이게 한다.
 sections.forEach((section) => {
   section.classList.add('reveal');
-  sectionObserver.observe(section);
+  sectionObserver.observe(section.querySelector('h1, h2'));
 });
 
 const contactForm = document.querySelector('#contact-form');
