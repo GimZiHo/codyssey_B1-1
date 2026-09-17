@@ -23,3 +23,4 @@
 | 017 | 폼 단위 결과 상태와 라이브 리전 | 검증 통과 시 성공 안내 표시와 입력·실패 제출 시 해제 | [폼 제출 결과를 성공 안내로 표시하고 해제하기](017-form-success-state.md) |
 | 018 | fetch·async/await와 요청 상태 렌더링 | GitHub 저장소 목록의 로딩·성공·빈 목록·실패와 재시도 | [fetch와 async/await로 GitHub 저장소를 불러와 상태별로 화면 그리기](018-async-fetch-states.md) |
 | 019 | 기능 통합 검증 | 메뉴·스크롤·등장·테마·API·폼을 이어서 실행한 상태 전환 확인과 등장 효과 보완 | [기능 통합 검증으로 상태 전환과 실제 결함 확인하기](019-integration-verification.md) |
+| 020 | 로컬 개발 서버(Live Server) | 워크스페이스 루트 기준 URL 제공과 저장 후 자동 새로고침 | [Live Server로 로컬 개발 서버 실행하기](020-live-server.md) |
