@@ -149,6 +149,25 @@ main section.reveal.visible {
   transform: translateY(-2px);
 }
 
+/* 소개는 모바일에서 사진과 글을 세로로 쌓는다. */
+.about-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-page);
+}
+
+/* 너비만 정하고 높이는 auto로 둬 img 속성에 적은 원본 비율을 유지한다. 가로 배치에서 줄어들지 않게 고정한다. */
+.about-body img {
+  flex-shrink: 0;
+  width: 12rem;
+  height: auto;
+}
+
+/* 가로 배치일 때 사진과 글의 첫 줄을 맞추려고 첫 문단의 위쪽 여백만 없앤다. */
+.about-text p:first-child {
+  margin-block-start: 0;
+}
+
 /* 오류 상태에서만 보이는 재시도 버튼. 내비게이션 버튼과 같은 모양을 쓴다. */
 #project-retry {
   padding: 0.5rem 1rem;
@@ -229,6 +248,12 @@ textarea[aria-invalid="true"] {
   nav {
     flex-direction: row;
     align-items: center;
+  }
+
+  /* 넓은 화면에서는 사진을 왼쪽, 글을 오른쪽에 나란히 놓는다. */
+  .about-body {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
 

@@ -24,3 +24,4 @@
 | 018 | fetch·async/await와 요청 상태 렌더링 | GitHub 저장소 목록의 로딩·성공·빈 목록·실패와 재시도 | [fetch와 async/await로 GitHub 저장소를 불러와 상태별로 화면 그리기](018-async-fetch-states.md) |
 | 019 | 기능 통합 검증 | 메뉴·스크롤·등장·테마·API·폼을 이어서 실행한 상태 전환 확인과 등장 효과 보완 | [기능 통합 검증으로 상태 전환과 실제 결함 확인하기](019-integration-verification.md) |
 | 020 | 로컬 개발 서버(Live Server) | 워크스페이스 루트 기준 URL 제공과 저장 후 자동 새로고침 | [Live Server로 로컬 개발 서버 실행하기](020-live-server.md) |
+| 021 | 이미지 대체 텍스트와 원본 비율 유지 | About 프로필 사진의 alt·원본 크기 속성과 세로·가로 배치 전환 | [프로필 이미지를 대체 텍스트·원본 비율과 함께 배치하기](021-image-alt-aspect-ratio.md) |
