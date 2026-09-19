@@ -10,7 +10,8 @@
 | --- | --- | --- |
 | pypdf | 6.18.0 | PDF 페이지와 텍스트 읽기 |
 | Playwright (Node.js) | 1.63.0 | 웹페이지 실행·DOM·스타일 검증과 화면 캡처 |
-| Chromium Headless Shell | 153.0.8010.12 (v1243) | Playwright 브라우저 실행 |
+| Chromium Headless Shell | 153.0.8010.12 (v1243) | Playwright 기본 브라우저 실행 |
+| Google Chrome (stable) | 153.0.8010.52 | 최신 정식 Chrome에서의 확인과 GUI 표시 |
 
 Python 환경 경로는 `~/.local/share/codex-tools/venv`이며, 설치 파일은 저장소에 포함하지 않는다. Python 도구 버전은 [tool-requirements.txt](../config/tool-requirements.txt)에 기록한다. 브라우저 도구의 경로와 버전은 아래 별도 항목에 정리한다.
 
@@ -57,7 +58,8 @@ PY
 
 - `node_modules/`: Playwright 패키지
 - `browsers/`: Chromium Headless Shell과 Playwright가 설치한 FFmpeg
-- `runtime-packages/`: Ubuntu 배포판에서 내려받은 공유 라이브러리·글꼴 패키지
+- `runtime-packages/`: Ubuntu 배포판과 Google 공식 경로에서 내려받은 패키지
+- `runtime/opt/google/chrome/chrome`: 정식 Google Chrome 실행 파일
 - `runtime/`: 위 패키지를 사용자 경로에 압축 해제한 내용
 - `fonts.conf`, `font-cache/`: 한글 글꼴 설정과 캐시
 
@@ -92,6 +94,34 @@ node /path/to/browser-check.cjs
 ```
 
 포트폴리오 프로젝트의 1280×720·375×720 화면에서 스크롤 경계값, CSS 배경색, 모바일 메뉴와 상단 이동을 검증하고 한글 화면을 캡처했다.
+
+### 정식 Google Chrome
+
+과제 6장의 "최신 Chrome에서 확인"은 헤드리스 셸로 대신할 수 없어 stable 채널 실행 파일을 같은 사용자 경로에 두었다. 2026-09-19에 `sudo` 권한 없이 Google 공식 배포 파일을 내려받아 시스템 변경 없이 압축만 해제했다.
+
+```bash
+codex_browser_tools="$HOME/.local/share/codex-tools/browser"
+cd "$codex_browser_tools/runtime-packages"
+curl -fsSL -o google-chrome-stable_current_amd64.deb \
+  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+dpkg-deb --extract google-chrome-stable_current_amd64.deb "$codex_browser_tools/runtime"
+```
+
+필요한 공유 라이브러리는 위에서 준비한 것과 시스템에 있는 것으로 모두 충족했다(`ldd`에 `not found` 없음). 실행 파일은 `runtime/opt/google/chrome/chrome`이며 버전은 다음으로 확인한다.
+
+```bash
+LD_LIBRARY_PATH="$HOME/.local/share/codex-tools/browser/runtime/usr/lib/x86_64-linux-gnu" \
+  "$HOME/.local/share/codex-tools/browser/runtime/opt/google/chrome/chrome" --version
+```
+
+setuid 샌드박스 바이너리는 root 소유가 아니어서 쓸 수 없으므로 `--no-sandbox`로 실행한다. 검증 스크립트에서는 `CHROME_BIN`으로 실행 파일을 지정하고, 지정하지 않으면 기본 헤드리스 셸로 실행한다.
+
+```bash
+CHROME_BIN="$HOME/.local/share/codex-tools/browser/runtime/opt/google/chrome/chrome" \
+  node src/tests/final-browser-check.cjs
+```
+
+WSLg가 있는 환경에서는 `--headless` 없이 실행하면 창이 그대로 화면에 뜨므로 사람이 직접 보는 확인에도 쓸 수 있다. 이 환경의 Windows 쪽에도 정식 Chrome이 있으나, 리눅스의 Playwright가 직접 구동할 수 없어 자동 검증에는 위 실행 파일을 쓴다.
 
 ### 새 환경에서 복구
 
