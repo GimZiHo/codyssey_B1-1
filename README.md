@@ -2,7 +2,7 @@
 
 순수 HTML·CSS·JavaScript로 만든 반응형 자기소개 포트폴리오입니다. 라이브러리와 프레임워크를 쓰지 않고, **사용자 이벤트 → 상태 변경 → 화면 업데이트**의 흐름을 직접 구현하며 DOM 조작·이벤트·비동기 처리를 익히는 것이 목적입니다.
 
-- 배포 주소: `https://gimziho.github.io/codyssey_B1-1/` — **아직 배포하지 않았습니다.** GitHub Pages 설정 후 이 주소에서 동작을 확인하고 이 문장을 지웁니다.
+- 배포 주소: <https://gimziho.github.io/codyssey_B1-1/>
 - 저장소 주소: <https://github.com/GimZiHo/codyssey_B1-1>
 
 관련 문서: [과제 요구사항 원문](docs/assignment-requirements.pdf) · [작업 지침](AGENTS.md) · [진행 상태와 체크리스트](docs/progress.md) · [학습 기록](docs/learning/README.md)
@@ -78,6 +78,12 @@ CHROME_BIN="$HOME/.local/share/codex-tools/browser/runtime/opt/google/chrome/chr
 ```
 
 **최근 결과**: 정식 Google Chrome 153.0.8010.52에서 시나리오 11개(자산 로드, 반응형, 메뉴, 앵커 이동, 내비 배경, 맨 위로, 테마, 등장 효과, 소개 영역, GitHub API, 문의 폼)를 375·768·1280px에서 실행해 **462건 모두 통과**했습니다. 실제 `api.github.com` 호출도 HTTP 200으로 저장소 3건을 받아 카드로 그려지는 것을 확인했습니다. 과정과 판단 근거는 [기능 통합 검증](docs/learning/019-integration-verification.md)에 있습니다.
+
+배포한 사이트에서도 같은 브라우저로 375·768·1280px의 진입점 이동, 자산 로드, 반응형, 메뉴, 스크롤 경계(60px·300px), 실제 GitHub API 호출, 등장 효과, 폼 검증, 테마 저장·복원을 확인해 **64건 모두 통과**했습니다.
+
+```bash
+node src/tests/deployed-site-check.cjs
+```
 
 ## 구현 범위와 동작 기준
 
