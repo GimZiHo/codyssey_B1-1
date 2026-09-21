@@ -60,6 +60,11 @@
 
       <section id="projects" aria-labelledby="projects-title">
         <h2 id="projects-title">프로젝트</h2>
+        <!-- 성공한 목록이 있을 때만 보인다. 표시 여부와 옵션은 JavaScript가 정한다. -->
+        <div id="project-filter" hidden>
+          <label for="project-language">언어별로 보기</label>
+          <select id="project-language"></select>
+        </div>
         <!-- 로딩·오류·빈 목록 문구가 번갈아 들어가는 자리. 라이브 리전을 먼저 등록해 두려고 빈 채로 둔다. -->
         <p id="project-status" role="status"></p>
         <!-- 오류 상태에서만 보인다. 표시 여부는 JavaScript가 hidden으로 정한다. -->

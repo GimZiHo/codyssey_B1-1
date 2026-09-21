@@ -163,6 +163,12 @@ contactFields.forEach((field) => {
 const projectStatus = document.querySelector('#project-status');
 const projectList = document.querySelector('#project-list');
 const projectRetryButton = document.querySelector('#project-retry');
+const projectFilter = document.querySelector('#project-filter');
+const projectLanguageSelect = document.querySelector('#project-language');
+
+// 언어가 없는 저장소를 고르는 선택지 값. 실제 언어 이름과 겹치지 않도록 별도 상수로 둔다.
+const UNSPECIFIED_LANGUAGE = '__unspecified__';
+const ALL_LANGUAGES = 'all';
 
 const githubUsername = 'GimZiHo';
 const repositoriesUrl = `https://api.github.com/users/${githubUsername}/repos`;
@@ -197,8 +203,62 @@ const createProjectCard = ({ name, description, language, html_url: htmlUrl }) =
   `;
 };
 
+// API 원본 목록에서 select에 쓸 고유 언어 선택지를 만든다. null 언어는 '미지정' 하나로 묶는다.
+const buildLanguageOptions = (repositories) => {
+  const options = [{ value: ALL_LANGUAGES, label: '전체' }];
+  const seen = new Set();
+
+  repositories.forEach(({ language }) => {
+    if (language === null) {
+      if (!seen.has(UNSPECIFIED_LANGUAGE)) {
+        seen.add(UNSPECIFIED_LANGUAGE);
+        options.push({ value: UNSPECIFIED_LANGUAGE, label: '미지정' });
+      }
+      return;
+    }
+
+    if (!seen.has(language)) {
+      seen.add(language);
+      options.push({ value: language, label: language });
+    }
+  });
+
+  return options;
+};
+
+// 원본 배열은 그대로 두고 선택된 언어에 맞는 저장소만 걸러 새 배열로 돌려준다.
+const filterRepositoriesByLanguage = (repositories, selectedLanguage) => {
+  if (selectedLanguage === ALL_LANGUAGES) {
+    return repositories;
+  }
+
+  if (selectedLanguage === UNSPECIFIED_LANGUAGE) {
+    return repositories.filter(({ language }) => language === null);
+  }
+
+  return repositories.filter(({ language }) => language === selectedLanguage);
+};
+
+// select의 표시 여부와 옵션·선택값을 지금 목록에 맞춘다. 목록이 없을 때는 통째로 숨긴다.
+const renderLanguageFilter = (status, repositories, selectedLanguage) => {
+  const showFilter = status === 'success' && repositories.length > 0;
+
+  projectFilter.hidden = !showFilter;
+
+  if (!showFilter) {
+    return;
+  }
+
+  const options = buildLanguageOptions(repositories);
+
+  projectLanguageSelect.innerHTML = options
+    .map(({ value, label }) => `<option value="${escapeHtml(value)}">${escapeHtml(label)}</option>`)
+    .join('');
+  projectLanguageSelect.value = selectedLanguage;
+};
+
 // 화면을 그리는 유일한 지점. 지금 상태만 보고 문구·재시도 버튼·카드 목록을 한 번에 맞춘다.
-const renderProjects = ({ status, repositories, errorMessage }) => {
+const renderProjects = ({ status, repositories, errorMessage, selectedLanguage }) => {
   // 실패일 때만 오류 색 클래스를 붙이고, 나머지 상태에서는 지워 이전 실패의 흔적을 남기지 않는다.
   if (status === 'error') {
     projectStatus.classList.add('error');
@@ -209,6 +269,7 @@ const renderProjects = ({ status, repositories, errorMessage }) => {
   projectRetryButton.hidden = status !== 'error';
   // 이전 상태에서 그린 카드는 먼저 지운다.
   projectList.innerHTML = '';
+  renderLanguageFilter(status, repositories, selectedLanguage);
 
   if (status === 'loading') {
     projectStatus.textContent = '프로젝트를 불러오는 중입니다...';
@@ -225,12 +286,25 @@ const renderProjects = ({ status, repositories, errorMessage }) => {
     return;
   }
 
+  // 원본 repositories는 그대로 두고, 화면에는 선택한 언어로 거른 결과만 그린다.
+  const filteredRepositories = filterRepositoriesByLanguage(repositories, selectedLanguage);
+
+  if (filteredRepositories.length === 0) {
+    projectStatus.textContent = '선택한 언어의 프로젝트가 없습니다.';
+    return;
+  }
+
   projectStatus.textContent = '';
-  projectList.innerHTML = repositories.map(createProjectCard).join('');
+  projectList.innerHTML = filteredRepositories.map(createProjectCard).join('');
 };
 
-// 요청 상태를 담는 하나의 값. 아직 요청하지 않은 상태가 idle이다.
-let projectState = { status: 'idle', repositories: [], errorMessage: '' };
+// 요청 상태를 담는 하나의 값. 아직 요청하지 않은 상태가 idle이다. selectedLanguage는 필터의 현재 선택값이다.
+let projectState = {
+  status: 'idle',
+  repositories: [],
+  errorMessage: '',
+  selectedLanguage: ALL_LANGUAGES,
+};
 
 // 상태를 바꾸는 유일한 지점. 바꾼 직후에 화면을 다시 그린다.
 const setProjectState = (nextState) => {
@@ -263,7 +337,8 @@ const loadProjects = async () => {
     return;
   }
 
-  setProjectState({ status: 'loading', repositories: [], errorMessage: '' });
+  // 새 요청을 시작하면 이전 목록에서 고른 언어는 더 이상 유효하지 않으므로 전체로 되돌린다.
+  setProjectState({ status: 'loading', repositories: [], errorMessage: '', selectedLanguage: ALL_LANGUAGES });
 
   try {
     // await가 응답을 기다리는 동안 화면은 로딩 상태 그대로 남는다.
@@ -275,7 +350,7 @@ const loadProjects = async () => {
 
     const repositories = await response.json();
 
-    setProjectState({ status: 'success', repositories, errorMessage: '' });
+    setProjectState({ status: 'success', repositories, errorMessage: '', selectedLanguage: ALL_LANGUAGES });
   } catch (error) {
     // 연결 자체가 실패하면 fetch가 TypeError로 거부하므로 안내를 따로 만든다.
     const reason = error instanceof TypeError ? '네트워크에 연결하지 못했습니다.' : error.message;
@@ -283,12 +358,18 @@ const loadProjects = async () => {
     setProjectState({
       status: 'error',
       repositories: [],
+      selectedLanguage: ALL_LANGUAGES,
       errorMessage: `프로젝트를 불러올 수 없습니다. ${reason}`,
     });
   }
 };
 
 projectRetryButton.addEventListener('click', loadProjects);
+
+// 선택한 언어만 상태에 반영한다. 원본 repositories는 바꾸지 않고 다시 요청하지도 않는다.
+projectLanguageSelect.addEventListener('change', () => {
+  setProjectState({ ...projectState, selectedLanguage: projectLanguageSelect.value });
+});
 
 // 페이지를 열면 바로 한 번 요청한다.
 loadProjects();

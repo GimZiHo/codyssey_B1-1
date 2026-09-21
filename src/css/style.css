@@ -168,6 +168,29 @@ main section.reveal.visible {
   margin-block-start: 0;
 }
 
+/* 언어 select와 label을 한 줄에 두되, 좁은 화면에서는 자동으로 줄바꿈한다. */
+/* hidden 속성이 있을 때는 이 규칙을 적용하지 않아야 hidden의 기본 display:none이 유지된다. */
+#project-filter:not([hidden]) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-block-end: var(--space-page);
+}
+
+#project-filter label {
+  display: inline;
+}
+
+#project-language {
+  font: inherit;
+  color: var(--color-text);
+  background-color: var(--color-background);
+  border: 1px solid currentColor;
+  padding: 0.3rem 0.5rem;
+  max-width: 100%;
+}
+
 /* 오류 상태에서만 보이는 재시도 버튼. 내비게이션 버튼과 같은 모양을 쓴다. */
 #project-retry {
   padding: 0.5rem 1rem;
