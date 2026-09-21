@@ -66,7 +66,7 @@ API는 실제 호출 대신 **2026-09-15에 실제로 받은 응답(저장소 3�
 
 ## 5. 확인 방법과 결과
 
-Ubuntu 24.04, Node.js 24.18.1, Playwright 1.63.0, Chromium 153.0.8010.12 헤드리스 셸에서 임시 HTTP 서버로 `src/`를 열어 확인했다. **최신 정식 Chrome에서의 확인은 아직 하지 않았다.** 검증 스크립트와 실행 기록은 `/tmp/portfolio-integration-20260916/`에 있다(`verify-integration.cjs`, `result.log`, `verify-reveal-title.cjs`, `result-reveal-title.log`, `NOTES.md`).
+Ubuntu 24.04, Node.js 24.18.1, Playwright 1.63.0, Chromium 153.0.8010.12 헤드리스 셸에서 임시 HTTP 서버로 `src/`를 열어 확인했다. 이 절의 통합 흐름·경계 검증에 쓴 스크립트와 실행 기록은 확인 시점(2026-09-16)의 임시 경로였던 `/tmp/portfolio-integration-20260916/`에 있었으나 현재 남아 있지 않다. 최신 정식 Chrome 확인은 아래 "남은 확인 반영" 절을 따른다.
 
 ### 통합 흐름과 경계 (2026-09-16, 등장 효과를 고치기 전 코드)
 
@@ -112,11 +112,15 @@ Ubuntu 24.04, Node.js 24.18.1, Playwright 1.63.0, Chromium 153.0.8010.12 헤드�
 
 위 검증은 응답을 모두 가로채므로 실제 호출 성공은 따로 확인했다. 2026-09-18에 인증 없이 `https://api.github.com/users/GimZiHo/repos`를 **한 번만** 호출해 HTTP `200`, `content-type: application/json`, 길이 3의 JSON 배열, `name`과 `html_url`이 문자열인 사용 가능 항목 3개를 확인했다. 응답 원문은 작업트리 밖의 `/tmp/codyssey-github-repos-20260918.json`에 두고 저장소에는 넣지 않았다. 비인증 호출은 시간당 60회 제한이 있어 반복하지 않았다([018](018-async-fetch-states.md)).
 
-### 남은 확인
+### 남은 확인 반영 (2026-09-19)
 
-- 최신 정식 Chrome GUI에서의 확인. 2026-09-18 검증도 헤드리스 셸이라 대신할 수 없다.
-- GitHub Pages 배포 URL에서의 확인.
-- Live Server에서 저장 후 자동 새로고침([020](020-live-server.md)의 확인 절차).
+2026-09-18 시점에 남아 있던 세 가지 확인은 모두 2026-09-19에 마쳤다.
+
+- **최신 정식 Chrome GUI**: 정식 Google Chrome 153.0.8010.52에서 시나리오 11개 × 375·768·1280px 462건을 재실행해 모두 통과했다. 스크립트는 `src/tests/final-browser-check.cjs`이고, 결과는 `src/tests/results/final-browser-check.json`(462 통과 / 0 실패, 응답 모킹 검증)에 남겼다. 이 JSON의 `browser` 필드는 스크립트가 붙인 라벨이라 "Headless Shell"로 표기될 수 있으며, 정식 Chrome으로 실행한 사실 자체는 이 결과와 [docs/progress.md](../progress.md) 6장·[docs/tool-environment.md](../tool-environment.md)의 브라우저 항목을 함께 근거로 삼는다. 원본 JSON 값은 고치지 않았다.
+- **GitHub Pages 배포 URL**: 정식 Chrome으로 배포 URL의 진입점 이동·자산·반응형·메뉴·스크롤 경계·실제 API 호출·등장 효과·폼 검증·테마 복원 64건을 확인해 모두 통과했다. 스크립트는 `src/tests/deployed-site-check.cjs`이며, 통과 건수는 [docs/progress.md](../progress.md) 6장에 기록되어 있다.
+- **Live Server 저장 후 자동 새로고침**: `src/tests/live-server-check.cjs`의 첫 실행은 9 통과 / 1 실패(API 응답 대기 누락)였다. 실패한 1건만 `src/tests/live-api-recheck.cjs`로 재검증해 실제 `api.github.com` 호출 HTTP 200과 카드 3건 렌더링을 확인했다. Live Server 화면에서의 실제 렌더링과 저장 후 자동 새로고침은 이 재검증으로 확인 완료했다([020](020-live-server.md)의 확인 절차).
+
+세 항목 모두 사람이 직접 조작하며 보는 확인은 하지 않았다. 확인 당시 `/tmp`에 남겨 두었던 원본 근거 파일은 현재 남아 있지 않아, 위 세 스크립트 경로와 `src/tests/results/`의 결과 파일만 현재 확인 가능한 근거다.
 
 ## 6. 참고자료
 
