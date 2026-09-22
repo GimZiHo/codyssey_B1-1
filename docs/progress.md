@@ -6,16 +6,16 @@
 
 작업을 시작할 때 이 블록만 읽으면 어디까지 했는지 알 수 있게 유지한다.
 
-- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원, Intersection Observer 등장 효과(섹션 제목 20%), 버튼·CTA·카드 hover·transition·box-shadow, 문의 폼 입력 활성화와 필수값·이메일 형식 검증(오류 표시, submit 기본 동작 차단, input 수정 시 오류 갱신), 검증 통과 시 성공 안내 표시와 입력·실패 제출 시 해제, GitHub API 저장소 목록 연동(로딩·성공·빈 목록·실패 상태와 재시도, 403·429 안내, 중복 요청 방지), 세 화면 크기의 기능 통합 흐름 확인, Live Server 개발 환경 구성과 실제 화면 표시·저장 후 자동 새로고침 확인, About의 실제 자기소개 3문단과 프로필 이미지 배치(모바일 세로·768px 이상 가로), 최종 제출 전 자동화 브라우저 검증(시나리오 11개 × 375·768·1280px, 462건 통과·0건 실패)과 비인증 실제 `api.github.com` 호출 성공 확인(HTTP 200, 저장소 3건, [019](learning/019-integration-verification.md)), 최신 정식 Google Chrome 153.0.8010.52에서 같은 462건 재실행 통과와 Live Server 화면의 실제 API 카드 렌더링 확인, GitHub Pages 배포(`main` 루트, 진입점 `index.html`)와 배포 URL 64건 확인, 제출용 스크린샷 3종과 README 정리, 선택 과제 `filter`를 활용한 언어별 프로젝트 필터링(원본 배열 유지, `hidden`·`display` 불일치 보완 포함), 선택 과제 `prefers-color-scheme` 시스템 테마 감지(저장된 유효한 선택 우선, 저장값 없을 때만 시스템 설정을 초기값과 변경 반영에 사용, 수동 토글 후 저장값이 시스템 변경 차단)
+- **완료**: 요구사항 정리, HTML 기본 구조·반응형 배치, 메뉴 토글, 앵커 부드러운 이동, 맨 위로 버튼(300px), 내비 배경 전환(60px), 테마 저장·복원, Intersection Observer 등장 효과(섹션 제목 20%), 버튼·CTA·카드 hover·transition·box-shadow, 문의 폼 입력 활성화와 필수값·이메일 형식 검증(오류 표시, submit 기본 동작 차단, input 수정 시 오류 갱신), 검증 통과 시 성공 안내 표시와 입력·실패 제출 시 해제, GitHub API 저장소 목록 연동(로딩·성공·빈 목록·실패 상태와 재시도, 403·429 안내, 중복 요청 방지), 세 화면 크기의 기능 통합 흐름 확인, Live Server 개발 환경 구성과 실제 화면 표시·저장 후 자동 새로고침 확인, About의 실제 자기소개 3문단과 프로필 이미지 배치(모바일 세로·768px 이상 가로), 최종 제출 전 자동화 브라우저 검증(시나리오 11개 × 375·768·1280px, 462건 통과·0건 실패)과 비인증 실제 `api.github.com` 호출 성공 확인(HTTP 200, 저장소 3건, [019](learning/019-integration-verification.md)), 최신 정식 Google Chrome 153.0.8010.52에서 같은 462건 재실행 통과와 Live Server 화면의 실제 API 카드 렌더링 확인, GitHub Pages 배포(`main` 루트, 진입점 `index.html`)와 배포 URL 64건 확인, 제출용 스크린샷 3종과 README 정리, 선택 과제 `filter`를 활용한 언어별 프로젝트 필터링(원본 배열 유지, `hidden`·`display` 불일치 보완 포함), 선택 과제 `prefers-color-scheme` 시스템 테마 감지(저장된 유효한 선택 우선, 저장값 없을 때만 시스템 설정을 초기값과 변경 반영에 사용, 수동 토글 후 저장값이 시스템 변경 차단), 선택 과제 Formspree 실제 문의 폼 전송(idle/submitting/success/error 상태 관리, fetch POST와 FormData, 전송 중 버튼 잠금과 중복 방지, 서버·네트워크 실패 안내, 전송 중 입력 수정으로 상태가 풀리던 경쟁 조건 보완)
 - **남은 기초 항목**: 없음
 - **진행 중**: 없음
-- **다음 작업 단위**: 없음. 필수 기능과 선택 과제(언어별 필터링, 시스템 테마 감지, Hero 타이핑 효과)를 모두 완료했다.
-- **그 다음**: 없음. 실제 폼 전송(Formspree/EmailJS)은 외부 서비스·개인정보 처리 방식을 먼저 결정해야 하므로 보류 상태로 둔다.
-- **보류된 결정**: 실제 폼 전송에 쓸 외부 서비스 선택과 개인정보 처리 방식.
+- **다음 작업 단위**: 없음. 필수 기능과 선택 과제(언어별 필터링, 시스템 테마 감지, Hero 타이핑 효과, Formspree 실제 폼 전송)를 모두 완료했다.
+- **그 다음**: 없음.
+- **보류된 결정**: 없음.
 - **학습 확인 처리**: 5장의 상태 → 렌더링 세 가지 흐름은 사용자 요청으로 설명 확인을 생략하고 완료 처리했다(2026-09-21). 실제 설명 평가는 진행하지 않았다.
 - **사용자 확인 대기**: README의 "개발 기간과 역할"에 AI 코딩 도구 사용을 사실대로 적었다. 제출 문서이므로 이 기재 방식을 사용자가 확인해야 한다.
-- **자료 반영 대기**: 없음. [024](learning/024-hero-typing.md)에 Hero 타이핑 효과 구현과 검증 결과를 반영했다(2026-09-22).
-- **최신 학습 기록**: [setInterval로 Hero 타이핑 효과 만들기](learning/024-hero-typing.md)
+- **자료 반영 대기**: 없음. [025](learning/025-formspree-submit.md)에 Formspree 실제 폼 전송 구현과 검증 결과, 합성 데이터로 실제 엔드포인트를 호출해 HTTP 200을 확인한 근거를 반영했다(2026-09-22).
+- **최신 학습 기록**: [Formspree로 문의 폼을 실제로 전송하기](learning/025-formspree-submit.md)
 - **마지막 갱신**: 2026-09-22
 
 ## 1. 개발 환경과 HTML 구조 — PDF 2~3쪽
@@ -60,7 +60,7 @@
 - [x] 이름, 이메일, 메시지를 입력받는다.
 - [x] 필수값과 이메일 형식을 검증하고 오류를 해당 필드 근처에 표시한다.
 - [x] 제출 시 기본 동작을 막고 검증 통과 시 성공 메시지를 표시한다. 성공 안내는 입력 수정과 실패 제출에서 해제한다.
-- 실제 이메일 전송은 선택 과제다. 전송을 구현하지 않았다면 실제로 전송했다고 안내하지 않는다.
+- 실제 이메일 전송은 선택 과제다. Formspree로 구현했다([선택 과제](#선택-과제--pdf-6~7쪽) 참고).
 
 ## 5. ES6+, GitHub API와 상태 관리 — PDF 5~6쪽, 8쪽
 
@@ -91,7 +91,7 @@
 - [x] `filter`를 활용한 언어별 프로젝트 필터링. `filterRepositoriesByLanguage`가 원본 `repositories`는 바꾸지 않고 선택한 언어로 거른 새 배열만 그린다. 정식 Google Chrome 153.0.8010.52에서 375·768·1280px 시나리오 105건과 기존 회귀 210건 모두 통과했다([022](learning/022-array-filter-language.md)).
 - [x] `prefers-color-scheme`을 이용한 시스템 테마 감지. 저장된 유효한 사용자 선택을 우선하고, 없을 때만 `matchMedia('(prefers-color-scheme: dark)')`로 초기값과 `change` 이벤트 반영을 결정한다. Playwright 1.63.0·Chromium 153.0.8010.12 headless shell로 시나리오 6건 통과했다([023](learning/023-prefers-color-scheme.md)).
 - [x] Hero 타이핑 효과. `setInterval`로 100ms마다 `typedLength`를 늘려 `#hero-typed`의 `textContent`를 채우고, 완료 시 `clearInterval`과 `typing` 클래스 제거로 커서를 멈춘다. `prefers-reduced-motion: reduce`에서는 타이머 없이 완성 문장을 바로 표시한다. Playwright 1.63.0·Chromium 153.0.8010.12 headless shell로 일반 타이핑 6건·`prefers-reduced-motion` 2건 총 8건 통과했다([024](learning/024-hero-typing.md)).
-- [ ] Formspree 또는 EmailJS를 이용한 실제 폼 전송
+- [x] Formspree 또는 EmailJS를 이용한 실제 폼 전송. Formspree(`https://formspree.io/f/xbglopny`)로 `fetch` POST 전송을 구현했고, `idle`/`submitting`/`success`/`error` 상태로 버튼 잠금·중복 방지·서버·네트워크 실패 안내를 처리한다. `node src/tests/final-browser-check.cjs -s contact-form`로 mobile/tablet/desktop 각 35건, 합계 105건 통과했다(모킹한 요청 기준). 개인정보 없는 합성 데이터로 실제 엔드포인트에 `POST` 1회를 실행해 HTTP 200, `{"next":"/thanks","ok":true}` 응답을 확인했다([025](learning/025-formspree-submit.md)).
 
 ## 학습 확인 — PDF 2쪽
 

@@ -122,6 +122,8 @@ sections.forEach((section) => {
 
 const contactForm = document.querySelector('#contact-form');
 const contactSuccess = document.querySelector('#contact-success');
+const contactSubmitButton = contactForm.querySelector('button[type="submit"]');
+const contactEndpoint = 'https://formspree.io/f/xbglopny';
 
 // @ 앞뒤에 공백이 없는 글자가 있고, 도메인에 점이 하나 이상 있는지만 확인한다.
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -152,9 +154,33 @@ const contactFields = [
   },
 ];
 
-// 성공 안내를 켜고 끄는 유일한 지점. 빈 문자열이면 안내가 없는 상태다.
-const renderFormSuccess = (message) => {
-  contactSuccess.textContent = message;
+// 전송 요청 상태를 담는 하나의 값. idle은 아직 보낸 적 없거나 입력이 바뀌어 이전 결과가 무효화된 상태다.
+let contactState = { status: 'idle', errorMessage: '' };
+
+// 전송 상태를 화면에 반영하는 유일한 지점. 버튼 잠금과 안내 문구를 한 번에 맞춘다.
+const renderContactState = (state) => {
+  contactSubmitButton.disabled = state.status === 'submitting';
+  contactSubmitButton.textContent = state.status === 'submitting' ? '전송 중...' : '문의하기';
+
+  contactSuccess.classList.toggle('error', state.status === 'error');
+
+  if (state.status === 'success') {
+    contactSuccess.textContent = '문의를 보냈습니다. 빠른 시일 내에 답변드리겠습니다.';
+    return;
+  }
+
+  if (state.status === 'error') {
+    contactSuccess.textContent = state.errorMessage;
+    return;
+  }
+
+  contactSuccess.textContent = '';
+};
+
+// 상태를 바꾸는 유일한 지점. 바꾼 직후에 화면을 다시 그린다.
+const setContactState = (nextState) => {
+  contactState = nextState;
+  renderContactState(contactState);
 };
 
 // 검증 결과를 오류 문구와 aria-invalid 속성에 반영한다. 화면 갱신은 여기서만 한다.
@@ -172,28 +198,58 @@ const validateField = (field) => {
   return message === '';
 };
 
-contactForm.addEventListener('submit', (event) => {
-  // 기본 제출을 막아 페이지 이동 없이 검증 결과만 화면에 반영한다.
+contactForm.addEventListener('submit', async (event) => {
+  // 기본 제출을 막아 페이지 이동 없이 fetch로 직접 보낸다.
   event.preventDefault();
+
+  // 이미 보내는 중이면 중복 클릭이 와도 새 요청을 만들지 않는다.
+  if (contactState.status === 'submitting') {
+    return;
+  }
 
   const invalidFields = contactFields.filter((field) => !validateField(field));
 
   if (invalidFields.length > 0) {
-    // 실패한 제출이므로 이전 제출의 성공 안내는 지운다.
-    renderFormSuccess('');
+    // 실패한 제출이므로 이전 제출의 안내는 지운다.
+    setContactState({ status: 'idle', errorMessage: '' });
     invalidFields[0].input.focus();
     return;
   }
 
-  // 전송 기능이 없으므로 접수·전송이 아니라 검증 통과만 안내한다.
-  renderFormSuccess('입력한 내용을 모두 확인했습니다. 실제 전송 기능은 아직 없어 내용은 전송되지 않았습니다.');
+  setContactState({ status: 'submitting', errorMessage: '' });
+
+  try {
+    // Accept 헤더를 json으로 두면 Formspree가 리다이렉트 대신 JSON 응답을 돌려준다.
+    const response = await fetch(contactEndpoint, {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+      body: new FormData(contactForm),
+    });
+
+    if (!response.ok) {
+      throw new Error('Formspree가 요청을 거부했습니다. 잠시 후 다시 시도해 주세요.');
+    }
+
+    setContactState({ status: 'success', errorMessage: '' });
+    contactForm.reset();
+    // reset은 값만 되돌리므로 남아 있던 오류 표시도 함께 지운다.
+    contactFields.forEach((field) => renderFieldError(field, ''));
+  } catch (error) {
+    // 연결 자체가 실패하면 fetch가 TypeError로 거부하므로 안내를 따로 만든다.
+    const reason = error instanceof TypeError ? '네트워크에 연결하지 못했습니다.' : error.message;
+
+    setContactState({ status: 'error', errorMessage: `문의를 보내지 못했습니다. ${reason}` });
+  }
 });
 
 // 오류가 표시된 필드만 입력에 맞춰 다시 검사한다. 처음 작성하는 동안에는 오류를 띄우지 않는다.
 contactFields.forEach((field) => {
   field.input.addEventListener('input', () => {
-    // 입력이 바뀌면 직전 제출의 성공 안내는 더 이상 지금 값에 대한 결과가 아니다.
-    renderFormSuccess('');
+    // 입력이 바뀌면 직전 제출의 성공·실패 안내는 더 이상 지금 값에 대한 결과가 아니다.
+    // 전송 중에는 아직 결과가 없으므로 되돌리지 않는다. 되돌리면 버튼이 풀려 fetch 완료 전에 재제출할 수 있다.
+    if (contactState.status === 'success' || contactState.status === 'error') {
+      setContactState({ status: 'idle', errorMessage: '' });
+    }
 
     if (field.input.getAttribute('aria-invalid') === 'true') {
       validateField(field);

@@ -265,6 +265,11 @@ textarea {
   color: var(--color-success);
 }
 
+/* 같은 요소를 전송 실패 안내에도 돌려 쓰므로 실패일 때만 오류 색으로 구분한다. */
+#contact-success.error {
+  color: var(--color-error);
+}
+
 /* 검증 상태는 aria-invalid 속성에 기록하고, 같은 속성을 선택자로 써서 테두리를 바꾼다. */
 input[aria-invalid="true"],
 textarea[aria-invalid="true"] {
