@@ -38,9 +38,19 @@ const applyTheme = (theme) => {
   }
 };
 
-// 저장된 테마가 있으면 복원하고, 없으면 기본값인 light를 사용한다.
-const savedTheme = localStorage.getItem('theme') || 'light';
-applyTheme(savedTheme);
+// 저장된 사용자 선택이 있으면 그것을 우선하고, 없으면 시스템 다크/라이트 설정을 따른다.
+const storedTheme = localStorage.getItem('theme');
+const prefersDarkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const isValidTheme = (theme) => theme === 'dark' || theme === 'light';
+
+applyTheme(isValidTheme(storedTheme) ? storedTheme : (prefersDarkQuery.matches ? 'dark' : 'light'));
+
+// 사용자가 저장한 선택이 없는 동안에만 시스템 설정 변경을 반영한다.
+prefersDarkQuery.addEventListener('change', (event) => {
+  if (!isValidTheme(localStorage.getItem('theme'))) {
+    applyTheme(event.matches ? 'dark' : 'light');
+  }
+});
 
 themeToggleButton.addEventListener('click', () => {
   const currentTheme = document.documentElement.dataset.theme;
