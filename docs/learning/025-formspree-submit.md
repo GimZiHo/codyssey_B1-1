@@ -138,7 +138,7 @@ if (contactState.status === 'success' || contactState.status === 'error') {
 
 ### 실제 엔드포인트 호출 확인
 
-개인정보 없는 합성 데이터(이름 "Codex 검증", 이메일 `test@example.com`, 메시지 "포트폴리오 문의 폼 자동 검증 테스트입니다.")로 실제 `https://formspree.io/f/xbglopny`에 `POST`를 정확히 1회 실행했다. 응답은 HTTP 200, 본문 `{"next":"/thanks","ok":true}`였다. `response.ok`가 참이 되는 상태 코드이므로 `renderContactState`의 `success` 분기가 실제로도 이 경로를 타는 것을 확인했다. 이후 사용자가 이 요청으로 발송된 Formspree 알림 이메일의 수신을 확인했다. 다만 받은편지함이 아니라 스팸함으로 분류되어 있었다.
+개인정보 없는 합성 데이터(이름 "Codex 검증", 이메일 `test@example.com`, 메시지 "포트폴리오 문의 폼 자동 검증 테스트입니다.")로 실제 `https://formspree.io/f/xbglopny`에 `POST`를 정확히 1회 실행했다. 응답은 HTTP 200, 본문 `{"next":"/thanks","ok":true}`였다. `response.ok`가 참이 되는 상태 코드이므로 `renderContactState`의 `success` 분기가 실제로도 이 경로를 타는 것을 확인했다. 이후 사용자가 Formspree 웹 대시보드의 Inbox에서 이 요청으로 들어온 문의 제출을 확인했다.
 
 **직접 확인하지 않은 것**: 서버 오류(4xx)·네트워크 실패 시 Formspree가 실제로 반환하는 값, 사람이 직접 조작하며 보는 확인, Chromium 외 브라우저 확인.
 
