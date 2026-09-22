@@ -1,3 +1,34 @@
+// Hero 제목을 한 글자씩 채워 시간에 따른 상태 변화가 화면에 반영되는 흐름을 보여준다.
+const heroTitle = document.querySelector('#hero-title');
+const heroTyped = document.querySelector('#hero-typed');
+const heroText = heroTyped.textContent;
+
+// 스크린 리더는 타이핑 진행과 무관하게 완성된 문장을 바로 듣도록 aria-label에 원문을 둔다.
+heroTitle.setAttribute('aria-label', heroText);
+
+const prefersReducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+if (prefersReducedMotionQuery.matches) {
+  heroTyped.textContent = heroText;
+} else {
+  heroTyped.textContent = '';
+  heroTitle.classList.add('typing');
+
+  let typedLength = 0;
+
+  const typeNextCharacter = () => {
+    typedLength += 1;
+    heroTyped.textContent = heroText.slice(0, typedLength);
+
+    if (typedLength >= heroText.length) {
+      clearInterval(typingIntervalId);
+      heroTitle.classList.remove('typing');
+    }
+  };
+
+  const typingIntervalId = setInterval(typeNextCharacter, 100);
+}
+
 const navigation = document.querySelector('nav');
 const menuButton = document.querySelector('#menu-toggle');
 const navigationMenu = document.querySelector('#navigation-menu');

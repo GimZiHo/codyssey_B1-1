@@ -138,6 +138,19 @@ main section.reveal.visible {
   transform: translateY(0);
 }
 
+/* 타이핑 중에만 JavaScript가 붙이는 깜빡이는 커서. 애니메이션 축소 선호 시에는 붙이지 않는다. */
+#hero-title.typing #hero-typed::after {
+  content: '|';
+  margin-left: 0.1em;
+  animation: hero-cursor-blink 1s step-end infinite;
+}
+
+@keyframes hero-cursor-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
 /* Hero의 CTA 링크. transform은 인라인 요소에 적용되지 않아 inline-block으로 바꾼다. */
 .cta {
   display: inline-block;

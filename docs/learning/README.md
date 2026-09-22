@@ -27,3 +27,4 @@
 | 021 | 이미지 대체 텍스트와 원본 비율 유지 | About 프로필 사진의 alt·원본 크기 속성과 세로·가로 배치 전환 | [프로필 이미지를 대체 텍스트·원본 비율과 함께 배치하기](021-image-alt-aspect-ratio.md) |
 | 022 | Array.filter | Projects의 언어별 필터 select와 원본 유지 필터링 | [Array.filter로 언어별 프로젝트 필터링하기](022-array-filter-language.md) |
 | 023 | prefers-color-scheme, matchMedia | 저장된 선택 없을 때 시스템 다크/라이트 감지와 변경 반영 | [prefers-color-scheme으로 시스템 테마 감지하기](023-prefers-color-scheme.md) |
+| 024 | setInterval, prefers-reduced-motion | Hero 제목 한 글자씩 타이핑과 애니메이션 축소 선호 시 즉시 표시 | [setInterval로 Hero 타이핑 효과 만들기](024-hero-typing.md) |
